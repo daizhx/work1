@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hengxuan.eht.massager"
+    android:installLocation="preferExternal">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name=".BaseActivity">
+        </activity>
+        <activity
+            android:name=".TreatmentActivity">
+            <intent-filter>
+                <action android:name="massager.intent.action.DESEASE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".AsxActivity" >
+        </activity>
+        <activity
+            android:name="com.hengxuan.eht.splash.StartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.hengxuan.eht.splash.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+            <intent-filter>
+                <action android:name="massager.intent.action.ABOUT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.hengxuan.eht.bluetooth.BluetoothInterface" />
+        <activity android:name="com.hengxuan.eht.user.LoginActivity" />
+        <activity android:name="com.hengxuan.eht.user.RegisterActivity" />
+        <activity
+            android:name=".VideoPlay"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_video_play"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name=".MediaControllerActivity"
+            android:label="@string/title_activity_media_controller"
+            android:screenOrientation="landscape"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity android:name=".Music.MusicPlayerActivity" >
+        </activity>
+
+        <service android:name=".Music.MusicService" >
+        </service>
+        <service
+            android:name="com.hengxuan.eht.logger.LogService"
+            android:exported="false" >
+        </service>
+
+        <activity
+            android:name=".guide"
+            android:label="@string/title_activity_guide"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".MassagerActivity"
+            android:label="@string/title_activity_massager" >
+        </activity>
+        <activity android:name=".AboutUsActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity android:name=".ResetPWActivity"/>
+        <activity android:name=".Music.SongListActivity"></activity>
+    </application>
+
+</manifest>

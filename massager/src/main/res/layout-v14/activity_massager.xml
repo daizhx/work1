@@ -1,0 +1,225 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.hengxuan.eht.massager.MassagerActivity"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mode"
+        android:id="@+id/textView"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/darker_gray"/>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="8dp"
+        android:columnCount="3"
+        >
+        <ToggleButton android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/massage_machine_modle1"
+            android:textOn="@string/massage_machine_modle1"
+            android:id="@+id/mode"/>
+
+        <ToggleButton android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/massage_machine_modle2"
+            android:textOn="@string/massage_machine_modle2"
+            />
+        <ToggleButton android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/massage_machine_modle3"
+            android:textOn="@string/massage_machine_modle3"
+            />
+
+        <ToggleButton android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/massage_machine_modle4"
+            android:textOn="@string/massage_machine_modle4"
+            />
+        <ToggleButton android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/massage_machine_modle5"
+            android:textOn="@string/massage_machine_modle5"
+            />
+        <ToggleButton android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/massage_machine_modle6"
+            android:textOn="@string/massage_machine_modle6"
+            />
+        <ToggleButton android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/massage_machine_modle7"
+            android:textOn="@string/massage_machine_modle7"
+            />
+        <ToggleButton android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/massage_machine_modle8"
+            android:textOn="@string/massage_machine_modle8"
+            />
+        </GridLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="15min"
+            android:textColor="@android:color/holo_red_light"
+            android:id="@+id/time"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:background="@android:color/darker_gray"/>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_marginTop="8dp"
+        android:progress="15"
+        android:max="30"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="10"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="20"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="30min"/>
+        </LinearLayout>
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strength"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="10dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:background="@android:color/darker_gray"/>
+
+
+        <LinearLayout android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jian_btn"
+                android:layout_marginRight="2dp"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/jian"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_rect"
+                android:gravity="center"
+                android:text="@string/strength_number"
+                android:id="@+id/tv_strength_ind"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jia_btn"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dp"
+                android:id="@+id/jia"
+                />
+        </LinearLayout>
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/frequence"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="10dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="2dp"
+            android:text="@string/low_fre"
+            android:textColor="@color/text_menu_color"
+            android:textSize="16dp"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_freq"
+            android:layout_marginTop="2dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/low_fre"/>
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:text="@string/mid_fre"
+            android:textColor="@color/text_menu_color"
+            android:textSize="16dp"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

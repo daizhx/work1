@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="circle_button_radius">120dp</dimen>
+    <dimen name="circle_button_width">120dp</dimen>
+    <dimen name="touchtime_width">240dp</dimen>
+    <dimen name="touchtime_height">240dp</dimen>
+
+</resources>

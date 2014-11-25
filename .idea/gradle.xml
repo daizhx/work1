@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Bluetooth" />
+            <option value="$PROJECT_DIR$/Lens" />
+            <option value="$PROJECT_DIR$/android_async_http" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/http" />
+            <option value="$PROJECT_DIR$/massager" />
+            <option value="$PROJECT_DIR$/old" />
+            <option value="$PROJECT_DIR$/slideMenuLibrary" />
+            <option value="$PROJECT_DIR$/update" />
+            <option value="$PROJECT_DIR$/viewPagerIndicator_library" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
+

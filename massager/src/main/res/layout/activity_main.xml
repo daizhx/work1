@@ -1,0 +1,140 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/page_indicator_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <com.viewpagerindicator.TabPageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="visible"
+            />
+
+        <!--
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray" />
+
+        <FrameLayout android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="7"
+            android:id="@+id/tv_index">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tx"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="7"
+                android:textColor="@android:color/white" />
+        </FrameLayout>
+        -->
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/page_indicator_bar"/>
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/fragment_mainnavigation_details_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg"
+            android:src="@drawable/treat_label" />
+
+        <TextView
+            android:id="@+id/fragment_mainnavigation_therapy_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="0dp"
+            android:drawableTop="@drawable/therapy_treatment_iw"
+            android:gravity="center"
+            android:text="@string/asx"
+            android:textColor="@color/main_color"
+            android:background="@drawable/btn_bg"
+            android:textAppearance="@android:style/TextAppearance.Widget.Button" />
+
+        <TextView
+            android:id="@+id/fragment_mainnavigation_treament_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="0dp"
+            android:drawableTop="@drawable/therapy_massage_iw"
+            android:gravity="center"
+            android:text="@string/treatment"
+            android:textColor="@color/main_color"
+            android:background="@drawable/btn_bg"
+            android:textAppearance="@android:style/TextAppearance.Widget.Button" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_bar"
+        android:layout_below="@id/page_indicator_bar"
+        android:layout_marginTop="1px"
+        android:id="@+id/control_frame"
+        >
+        <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_play"
+            android:background="@android:color/transparent"
+            android:id="@+id/play_btn"/>
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/text1"
+                android:textColor="@color/text_menu_color"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="4dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/text2"
+                android:textColor="@color/text_menu_color"/>
+            </LinearLayout>
+    </FrameLayout>
+
+</RelativeLayout>
+
+

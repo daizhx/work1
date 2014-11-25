@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Bluetooth/Bluetooth.iml" filepath="$PROJECT_DIR$/Bluetooth/Bluetooth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EHT_studio.iml" filepath="$PROJECT_DIR$/EHT_studio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lens/Lens.iml" filepath="$PROJECT_DIR$/Lens/Lens.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android_async_http/android_async_http.iml" filepath="$PROJECT_DIR$/android_async_http/android_async_http.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/http/http.iml" filepath="$PROJECT_DIR$/http/http.iml" />
+      <module fileurl="file://$PROJECT_DIR$/massager/massager.iml" filepath="$PROJECT_DIR$/massager/massager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/old/old.iml" filepath="$PROJECT_DIR$/old/old.iml" />
+      <module fileurl="file://$PROJECT_DIR$/slideMenuLibrary/slideMenuLibrary.iml" filepath="$PROJECT_DIR$/slideMenuLibrary/slideMenuLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/update/update.iml" filepath="$PROJECT_DIR$/update/update.iml" />
+      <module fileurl="file://$PROJECT_DIR$/viewPagerIndicator_library/viewPagerIndicator_library.iml" filepath="$PROJECT_DIR$/viewPagerIndicator_library/viewPagerIndicator_library.iml" />
+    </modules>
+  </component>
+</project>
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="main_color">#19c7f9</color>
+    <color name="main_color2">#72dcfb</color>
+    <color name="content_bg">#f1f1f1</color>
+    <color name="text_menu_color">#7e7e7e</color>
+    <color name="actionbar_bg">#00a9dc</color>
+    <color name="ic_pressed_bg">#15bbea</color>
+    <color name="press_color">#ffe2e2e2</color>
+    <color name="text_hint">#bebebe</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="serial_num_edit_bg">#e8e8e8</color>
+    <color name="serial_num_edit_line_bg">#cecece</color>
+    <color name="menu_text_bg">#187bf6</color>
+    <color name="mask_bg">#919191</color>
+    <color name="red_text">#ffff4444</color>
+</resources>

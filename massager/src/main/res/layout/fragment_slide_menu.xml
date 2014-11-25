@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/fragment_persion_portrait_iw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/yh"/>
+
+    <TextView
+        android:id="@+id/fragment_persion_button_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/fragment_persion_portrait_iw"
+        android:layout_margin="3dp"
+        android:text="@string/login"
+        android:textSize="18sp"
+        android:textColor="@color/text_menu_color"
+        android:padding="8dp"
+        android:background="@drawable/btn_bg"
+        />
+
+    <RelativeLayout
+        android:id="@+id/fragment_persion_setting_rt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+
+        <TextView
+            android:id="@+id/fragment_persion_setting_iw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:drawableLeft="@drawable/actionbar_setting"
+            android:drawablePadding="2dp"
+            android:text="@string/action_settings"
+            android:textColor="@color/text_menu_color"
+            android:background="@drawable/btn_bg"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/fragment_persion_setting_rt"
+        android:layout_below="@id/fragment_persion_button_login"
+        android:layout_marginTop="30dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/fragment_persion_share_rt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_bg"
+                >
+
+                <ImageView
+                    android:id="@+id/fragment_persion_share_iw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:minHeight="50dp"
+                    android:minWidth="50dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/share_iw" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/fragment_persion_share_iw"
+                    android:layout_centerHorizontal="true"
+                    android:duplicateParentState="true"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:singleLine="true"
+                    android:text="@string/myshare"
+                    android:textColor="@color/text_menu_color" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_persion_about_rt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_bg">
+
+                <ImageView
+                    android:id="@+id/fragment_persion_about_iw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:minHeight="50dp"
+                    android:minWidth="50dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/about_iw" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/fragment_persion_about_iw"
+                    android:layout_centerHorizontal="true"
+                    android:duplicateParentState="true"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:singleLine="true"
+                    android:text="@string/about_musicmassage_title"
+                    android:textColor="@color/text_menu_color" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_center_consume_rt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_bg">
+
+                <ImageView
+                    android:id="@+id/fragment_center_consume_iw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:minHeight="50dp"
+                    android:minWidth="50dp"
+                    android:src="@drawable/ic_shop"
+                    android:scaleType="centerInside" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/fragment_center_consume_iw"
+                    android:layout_centerHorizontal="true"
+                    android:duplicateParentState="true"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/text_menu_color"
+                    android:singleLine="true"
+                    android:text="@string/online_shop"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

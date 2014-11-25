@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Massager</string>
+    <string name="konw_info">I known</string>
+    <string name="app_update">版本更新</string>
+    <string name="update">更新</string>
+    <string name="not_update">暂不更新</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#ffFAF8F6</color>
+    <color name="red">#ffff0000</color>
+    <color name="gray">#ffcccccc</color>
+    <color name="purple">#ff800080</color>
+    <color name="black">#ff000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="button_bg">#ff4fc1e9</color>
+    <color name="button_bg_pressed">#ffb6d99f</color>
+    <color name="back_normal">#00000000</color>
+    <color name="back_pressed">#ff004986</color>
+    <color name="soft_text_color">#1A1A1A</color>
+</resources>

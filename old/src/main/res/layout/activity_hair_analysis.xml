@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical" >
+
+    
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_bar" >
+
+        <!--
+    	<com.hengxuan.lens.hair.HairView 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/filter"/>
+        -->
+    </FrameLayout>
+
+    <include layout="@layout/ana_menu_bar" />
+    <FrameLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/background_dark" >
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/other_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_bar"
+        android:layout_alignParentLeft="true"
+        android:text="@string/mean_radius"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/alert_dialog_layout_title"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp" >
+
+            <ImageView
+                android:id="@+id/alert_dialog_iv_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/alert_dialog_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/alert_dialog_iv_icon"
+                android:singleLine="true"
+                android:textColor="#00E5EE"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="?android:attr/listDivider" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/alert_dialog_layout_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="20dp" >
+
+            <TextView
+                android:id="@+id/customer_reply_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/customer_reply_per"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:textColor="#df9c60"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                style="@style/progress_horizontal_color1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/customer_reply_per"
+                android:layout_marginTop="5dp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/id_imageView_01"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/alert_dialog_btn01"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1.0"
+                android:text="@android:string/ok"
+                android:textColor="@android:color/white"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/alert_dialog_btn02"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1.0"
+                android:text="@android:string/cancel"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                android:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

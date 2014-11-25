@@ -1,0 +1,142 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hengxuan.eht.massager.TreatmentActivity$PlaceholderFragment">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:id="@+id/top_margin"
+        android:background="@color/actionbar_bg"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_margin"
+        android:id="@+id/container"
+        android:background="@drawable/circle_btn_bg"
+        >
+        <com.hengxuan.eht.massager.MyView.CircleButtons
+            xmlns:custom="http://schemas.android.com/apk/res/com.hengxuan.eht.massager.heyisheng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:radiuss="@dimen/circle_button_radius"
+            custom:buttonWidth = "@dimen/circle_button_width"
+            custom:buttonNum = "8"
+            android:layout_gravity="center"
+            android:id="@+id/circle_btns"
+            />
+        <com.hengxuan.eht.massager.MyView.TouchTimeView
+            android:layout_width="@dimen/touchtime_width"
+            android:layout_height="@dimen/touchtime_height"
+            android:layout_gravity="center"
+            android:id="@+id/timer"/>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/container"
+        android:layout_marginTop="10dp"
+        android:id="@+id/rl_strength">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/strength"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/text_menu_color"
+            android:textSize="16sp"
+            android:id="@+id/tv_lable1"/>
+        <LinearLayout android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/tv_lable1"
+            android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/jian_btn"
+            android:layout_marginRight="2dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/jian"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_rect"
+            android:gravity="center"
+            android:text="@string/strength_number"
+            android:id="@+id/tv_strength_ind"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/jia_btn"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:id="@+id/jia"
+            />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_strength"
+        android:layout_marginLeft="80dp"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/frequence"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/text_menu_color"
+            android:textSize="16sp"
+            android:id="@+id/tv_frequence"/>
+
+        <LinearLayout android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/tv_frequence"
+            >
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="2dp"
+                android:text="@string/low_fre"
+                android:textColor="@color/text_menu_color"
+                android:textSize="16dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_frequence"
+                android:id="@+id/iv_freq"
+                android:layout_marginTop="2dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/low_fre"/>
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dp"
+                android:text="@string/mid_fre"
+                android:textColor="@color/text_menu_color"
+                android:textSize="16dp"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
+</ScrollView>
+    <include layout="@layout/prompt_text_entry" android:id="@+id/verify_prompt"/>
+</RelativeLayout>

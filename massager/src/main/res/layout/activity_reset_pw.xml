@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:background="@color/content_bg">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        />
+    <EditText android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:id="@+id/et_pw"
+        android:textColorHint="@color/text_hint"
+        android:drawablePadding="10dp"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_password"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        />
+    <EditText android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:id="@+id/et_new_pw"
+        android:textColorHint="@color/text_hint"
+        android:drawablePadding="10dp"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_password_confirm"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        />
+    <EditText android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:id="@+id/et_new_pw2"
+        android:textColorHint="@color/text_hint"
+        android:drawablePadding="10dp"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"/>
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/submit"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/btn_bg2"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/tv_submit"/>
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/cancel"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/btn_bg2"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/tv_cancel"/>
+</LinearLayout>

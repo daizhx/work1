@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">显微镜</string>
+    <string name="open_lens">打开镜头</string>
+    <string name="confirm">确定</string>
+    <string name="lens_connecting">正在连接镜头</string>
+    <string name="lost_lens">未连接镜头</string>
+    <string name="yes">是</string>
+    <string name="lens_not_open">镜头未打开</string>
+    <string name="multi_lens">发现多个镜头，请选择要连接的设备！</string>
+    <string name="start">开始</string>
+    <string name="min">缩小</string>
+    <string name="max">放大</string>
+    <string name="get_image">正在获取图像</string>
+    <string name="scan_lens">镜头未连接，正在搜索镜头</string>
+    <string name="title_activity_guid">使用向导</string>
+    <string name="action_settings">Settings</string>
+    <string name="separate_lens">外置显微镜</string>
+    <string name="tell_open_len">首先，请打开镜头电源开关，让其处于工作状态。</string>
+    <string name="how_operate_lens">如何打开镜头？</string>
+    <string name="scan_lens_hint">点击下面的检测按钮检测镜头是否已打开</string>
+    <string name="check">检测</string>
+    <string name="open_wifi_setting">点击下面的按钮进入WIFI连接设置界面，连接名称为EHT的WIFI热点</string>
+    <string name="go_wifi_setting">打开WIFI设置界面</string>
+    <string name="how_get_lens">没有镜头？</string>
+    <string name="go_home">进入主界面</string>
+    <string name="no_steps">跳过直接进入主界面</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lens_available">镜头已打开</string>
+    <string name="please_connect_eht_first">请先打开wifi设置界面连接EHT</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="save_pic_name">保存图片名称</string>
+    <string name="name">名称：</string>
+    <string name="not_null">不能为空</string>
+    <string name="cance">取消</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="connect">连接</string>
+    <string name="title_activity_gallery">历史图片</string>
+    <string name="save_image">保存图片</string>
+    <string name="title_activity_connect">连接</string>
+
+</resources>

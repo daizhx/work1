@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Http</string>
+    <string name="no_image">no image</string>
+    <string name="mess_wifi_cert">WIFI认证</string>
+    <string name="mess_wifi_need_cert">连接网络需要认证，请打开浏览器认证?</string>
+    <string name="ok">好</string>
+    <string name="cancel">取消</string>
+    <string name="alert_title_poor_network2">网络不可用</string>
+    <string name="alert_message_poor_network2">网络连接失败，请重试.</string>
+    <string name="retry">重试</string>
+    <string name="exit">退出</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EHT</string>
+    <string name="bluetoothname">设备名称</string>
+    <string name="bluetoothmac">MAC地址</string>
+    <string name="connect">连接</string>
+    <string name="disconnectbluetooth">蓝牙未连接</string>
+</resources>

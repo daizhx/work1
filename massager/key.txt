@@ -1,0 +1,4 @@
+key alias:massager
+pw:eht2014
+
+zipalign -v 4 your_project_name-unaligned.apk your_project_name.apk

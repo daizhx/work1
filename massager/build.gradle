@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 20
+    buildToolsVersion '20.0.0'
+
+    defaultConfig {
+        applicationId "com.hengxuan.eht.massager"
+        minSdkVersion 11
+        targetSdkVersion 20
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        heyisheng {
+            applicationId "com.hengxuan.eht.massager.heyisheng"
+        }
+        base {
+            applicationId "com.hengxuan.eht.massager"
+            versionCode 2
+            versionName "1.0.1"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':slideMenuLibrary')
+    compile project(':Bluetooth')
+    compile project(':http')
+    compile project(':android_async_http')
+    compile project(':viewPagerIndicator_library')
+    compile project(':update')
+}
