@@ -43,15 +43,12 @@ public class XMLPullParserUtils {
 		XmlPullParser parser = factory.newPullParser();
 		parser.setInput(this.input, "UTF-8");
 		int eventType = parser.getEventType();
-		//如果文档没有结束，继续进行下面的解析
 		while(eventType != XmlPullParser.END_DOCUMENT){
 			if(XmlPullParser.START_DOCUMENT == eventType){
-				//实例化list对象
 				this.all = new ArrayList<Organ>();
 			}else if (eventType == XmlPullParser.START_TAG) {
 				elementName = parser.getName();
 				if(ELEMENT_NAME.equals(elementName)){
-					//实例化子对象
 					item = new Organ();
 				}
 			}else if(XmlPullParser.END_TAG == eventType){
@@ -117,8 +114,4 @@ public class XMLPullParserUtils {
 	public List<Organ> getAll() {
 		return all;
 	}
-	
-	
-	
-
 }

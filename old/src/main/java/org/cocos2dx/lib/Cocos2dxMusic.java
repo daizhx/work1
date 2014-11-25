@@ -316,8 +316,7 @@ public class Cocos2dxMusic {
 					
 					int max = dataArr[0];  
 					int index = 0;
-			        for (int j = 1; j < dataArr.length; j++) {  
-			            //>0表示前者大于后者   
+			        for (int j = 1; j < dataArr.length; j++) {
 			            if (dataArr[j] > max) {  
 			                max = dataArr[j];  
 			                index = j;  
@@ -329,7 +328,7 @@ public class Cocos2dxMusic {
         			*/
 			        
 					
-					// averagenum = (short)averageAmplitude(waveform);//获取振幅平均值发给按摩器
+					// averagenum = (short)averageAmplitude(waveform);
 					//int total = 0;
 					//int average = 0;
 					count = 0;
@@ -346,7 +345,7 @@ public class Cocos2dxMusic {
 	            			// BluetoothServiceProxy.sendCommandToDevice(message);
 	            			
 	            			Handler handler = new Handler();
-	        				handler.postDelayed(new Runnable() { //向按摩机发送数据
+	        				handler.postDelayed(new Runnable() { //锟斤拷摩锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 
 	        					@Override
 	        					public void run() {
@@ -362,7 +361,7 @@ public class Cocos2dxMusic {
 	        					}
 	        				}, (100 * SENDMESSAGE_TIME_GAP / waveform.length) * count);	        				
 	        				/*
-	            			new Thread(new Runnable() {//启动线程向按摩机发送数据
+	            			new Thread(new Runnable() {
 
 			        			@Override
 			        			public void run() {

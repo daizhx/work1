@@ -336,6 +336,7 @@ public class MusicMassagerActivity extends SlidingActivity implements
         editor.putInt("currentPosition", currentPosition);
         editor.commit();
         unbindMusicService();
+        unregisterBIBroadcastReceiver();
         super.onDestroy();
     }
 
