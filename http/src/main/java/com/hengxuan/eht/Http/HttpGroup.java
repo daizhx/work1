@@ -25,7 +25,6 @@ public abstract class HttpGroup{
 	public static final String TAG = "HttpGroup";
 
     private Context mContext;
-	// ������
 	public interface CompleteListener {
 		public abstract void onComplete(Bundle paramBundle);
 	}
@@ -120,7 +119,7 @@ public abstract class HttpGroup{
 	private static int httpIdCounter = 0;
 	static String mMd5Key;
 	static JSONObjectProxy mModules;
-	static String token = null;
+	static String token = "85f7425e-3bb2-44d3-be48-095139146ea2";
 
 //	protected static final int readTimeout = Integer.parseInt(Configuration.getProperty("readTimeout"));
 
@@ -518,10 +517,6 @@ public abstract class HttpGroup{
 		this.useCaches = useCaches;
 	}
 
-	/**
-	 * ��ʾ������״̬
-	 * @param httpsetting
-	 */
 	private void tryEffect(HttpSetting httpsetting) {
 		Activity activity = httpGroupSetting.getMyActivity();
 		int i = httpsetting.getEffect();
@@ -533,7 +528,6 @@ public abstract class HttpGroup{
 	}
 }
 
-// �ڲ���
 class HttpGroup_Thread extends Thread {
 	HttpGroup group;
 	HttpRequest httpRequest;
