@@ -410,4 +410,12 @@
     <string name="bluetooth_devices">Bluetooth Devices</string>
     <string name="not_support_device">Not support device</string>
     <string name="select_device">Select device</string>
+
+    <string name="address">Addr.</string>
+    <string name="please_enter_your_address">please input your address</string>
+    <string name="please_enter_your_age">please input your age</string>
+    <string name="please_enter_your_height">please input your height</string>
+    <string name="weight">Weight</string>
+    <string name="please_enter_your_weight">please input your weight</string>
+    <string name="improve_personal_information">Personal Information</string>
 </resources>

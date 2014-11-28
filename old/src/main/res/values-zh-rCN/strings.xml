@@ -408,7 +408,8 @@
     <string name="color_deeply_black">选择的是深黑色</string>
     <string name="nocolor">请选择一种颜色</string>
     <string name="iris_editor">编辑</string>
-    
+
+    <string name="select_device">选择设备</string>
     <string name="bluetoothname">设备名称</string>
     <string name="bluetoothmac">MAC地址</string>
     <string name="connect">连接</string>

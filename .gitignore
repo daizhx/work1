@@ -7,3 +7,4 @@ build
 *.apk
 key.jks
 key.txt
+keyStore

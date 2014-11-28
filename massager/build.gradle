@@ -21,11 +21,13 @@ android {
     productFlavors {
         heyisheng {
             applicationId "com.hengxuan.eht.massager.heyisheng"
+            versionCode 1
+            versionName "1.0"
         }
         base {
             applicationId "com.hengxuan.eht.massager"
-            versionCode 2
-            versionName "1.0.1"
+            versionCode 3
+            versionName "1.0.2"
         }
     }
 }
