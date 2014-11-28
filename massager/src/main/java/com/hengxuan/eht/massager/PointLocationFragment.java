@@ -75,6 +75,8 @@ public class PointLocationFragment extends Fragment {
                         }
                         if(CommonUtil.getLocalLauguage(getActivity()) == 1){
                             list.setAdapter(new ImageListAdapter(getActivity(),listWidth,"xw" + id));
+                        }else if(CommonUtil.getLocalLauguage(getActivity()) == 2){
+                            list.setAdapter(new ImageListAdapter(getActivity(),listWidth,"xwtw" + id));
                         }else{
                             list.setAdapter(new ImageListAdapter(getActivity(),listWidth,"xwen" + id));
                         }

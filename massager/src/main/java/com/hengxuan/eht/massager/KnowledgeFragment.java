@@ -72,6 +72,8 @@ public class KnowledgeFragment extends Fragment {
                         hasMeasured = true;
                         if(CommonUtil.getLocalLauguage(getActivity()) == 1) {
                             list.setAdapter(new ImageListAdapter(getActivity(), listWidth, file));
+                        }else if(CommonUtil.getLocalLauguage(getActivity()) == 2){
+                            list.setAdapter(new ImageListAdapter(getActivity(), listWidth, file+"tw"));
                         }else{
                             list.setAdapter(new ImageListAdapter(getActivity(), listWidth, file+"en"));
                         }

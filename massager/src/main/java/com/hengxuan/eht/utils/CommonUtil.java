@@ -556,10 +556,15 @@ public class CommonUtil {
         int code = 0;
         Locale local = context.getResources().getConfiguration().locale;
         String s = local.getLanguage();
+        String contry = local.getCountry();
         if(s.equals("en")){
-            code = 2;
+            code = 3;
         }else if(s.equals("zh")){
-            code = 1;
+            if(contry.equals("TW")){
+                code = 2;
+            }else {
+                code = 1;
+            }
         }
         return code;
     }

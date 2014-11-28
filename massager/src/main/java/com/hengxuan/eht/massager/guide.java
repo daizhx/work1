@@ -66,6 +66,9 @@ public class guide extends Activity {
         if(CommonUtil.getLocalLauguage(this) == 1) {
             decodeBmpFromAssets(img1,"guide/guide1.png");
             decodeBmpFromAssets(img2,"guide/guide2.png");
+        }else if(CommonUtil.getLocalLauguage(this) == 2){
+            decodeBmpFromAssets(img1,"guide/guide1.png");
+            decodeBmpFromAssets(img2,"guide/guide2.png");
         }else{
             decodeBmpFromAssets(img1,"guide/guide1_en.png");
             decodeBmpFromAssets(img2,"guide/guide2_en.png");

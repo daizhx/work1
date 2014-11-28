@@ -1,1 +1,1 @@
-include ':app', ':old',':slideMenuLibrary',':http', ':massager',':Bluetooth',':android_async_http',':viewPagerIndicator_library',':update',':Lens'
+include ':app', ':old',':slideMenuLibrary',':http', ':massager',':Bluetooth',':android_async_http',':viewPagerIndicator_library',':update',':Lens', ':massager2'

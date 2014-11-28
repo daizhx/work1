@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/http/http.iml" filepath="$PROJECT_DIR$/http/http.iml" />
       <module fileurl="file://$PROJECT_DIR$/massager/massager.iml" filepath="$PROJECT_DIR$/massager/massager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/massager2/massager2.iml" filepath="$PROJECT_DIR$/massager2/massager2.iml" />
       <module fileurl="file://$PROJECT_DIR$/old/old.iml" filepath="$PROJECT_DIR$/old/old.iml" />
       <module fileurl="file://$PROJECT_DIR$/slideMenuLibrary/slideMenuLibrary.iml" filepath="$PROJECT_DIR$/slideMenuLibrary/slideMenuLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/update/update.iml" filepath="$PROJECT_DIR$/update/update.iml" />

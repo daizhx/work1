@@ -41,6 +41,8 @@ public class TreatmentToolsFragment extends Fragment {
                         }
                         if(CommonUtil.getLocalLauguage(getActivity()) == 1) {
                             list.setAdapter(new ImageListAdapter(getActivity(), listWidth, "tool"));
+                        }else if(CommonUtil.getLocalLauguage(getActivity()) == 2){
+                            list.setAdapter(new ImageListAdapter(getActivity(), listWidth, "tooltw"));
                         }else{
                             list.setAdapter(new ImageListAdapter(getActivity(), listWidth, "toolen"));
                         }

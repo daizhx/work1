@@ -40,6 +40,8 @@ public class AsxActivity extends BaseActivity{
                         hasMeasured = true;
                         if(CommonUtil.getLocalLauguage(AsxActivity.this) == 1) {
                             list.setAdapter(new ImageListAdapter(AsxActivity.this, listWidth, "asx"));
+                        }else if(CommonUtil.getLocalLauguage(AsxActivity.this) == 2){
+                            list.setAdapter(new ImageListAdapter(AsxActivity.this, listWidth, "asxtw"));
                         }else{
                             list.setAdapter(new ImageListAdapter(AsxActivity.this, listWidth, "asxen"));
                         }

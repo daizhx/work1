@@ -175,7 +175,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,S
         pageIndicator.setOnPageChangeListener(this);
 
         ImageButton iv1 = (ImageButton)findViewById(R.id.fragment_mainnavigation_details_tv);
-        if(CommonUtil.getLocalLauguage(this) != 1){
+        if(CommonUtil.getLocalLauguage(this) != 1 && CommonUtil.getLocalLauguage(this) != 2){
             iv1.setImageResource(R.drawable.treat_label_en);
         }
         iv1.setOnClickListener(this);
