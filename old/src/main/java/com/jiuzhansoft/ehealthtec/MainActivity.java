@@ -1,22 +1,10 @@
 package com.jiuzhansoft.ehealthtec;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.ref.WeakReference;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.hengxuan.eht.Http.HttpError;
 import com.hengxuan.eht.Http.HttpGroup;
 import com.hengxuan.eht.Http.HttpGroupSetting;
@@ -40,28 +28,18 @@ import com.jiuzhansoft.ehealthtec.user.UserInformationActivity;
 import com.jiuzhansoft.ehealthtec.user.UserLogin;
 import com.jiuzhansoft.ehealthtec.user.UserLoginActivity;
 import com.jiuzhansoft.ehealthtec.utils.AsynImageLoader;
-
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.preference.Preference;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapFactory.Options;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -77,23 +55,20 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends SlidingActivity{
 	private static final String TAG = "MainActivity";
 	private int mDisplayWidth = 0;
 	private int mDisplayHeight = 0;
 	private ViewPager mViewPager;
-	private PagerAdapter mPagerAdapter;
+	private TopPagerViewAdapter mPagerAdapter;
 	private ImageView ind1, ind2, ind3;
 	private Bitmap mPlaceHolderBitmap;
 	private SlidingMenu mSlideMenu;
 	private static final int REQ_ACTION_LOGIN = 1;
-	// private Boolean isSlideMenuOpen = false;
 	// health tip
 	private TextView tvTip;
 	private FragmentTransaction mFragmentTransaction;
@@ -102,6 +77,7 @@ public class MainActivity extends SlidingActivity{
 	private HealthTipsFragment mHealthTipsFragment;
 	private boolean fragmentFlag = false;
 	public ImageView leftIcon;
+    private static final int TOP_PAGES = 3;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -120,10 +96,11 @@ public class MainActivity extends SlidingActivity{
 		mFragmentManager.beginTransaction()
 				.add(R.id.fragment_container, mMainMenuFragment).commit();
 		initView();
+        mPagerAdapter = new TopPagerViewAdapter();
+        mViewPager.setAdapter(mPagerAdapter);
 		getLoginState();
 		
 		getAdv();
-
         UpdateManager updateManager = UpdateManager.getUpdateManager(this);
         try {
             int versionCode = getPackageManager().getPackageInfo(getPackageName(),0).versionCode;
@@ -383,15 +360,21 @@ public class MainActivity extends SlidingActivity{
 		return true;
 	}
 
-	private class TopPagerViewAdapter extends PagerAdapter {
+	class TopPagerViewAdapter extends PagerAdapter {
+
 		String[] paths;
+        TopPagerViewAdapter(){
+        }
 		public TopPagerViewAdapter(String[] paths) {
 			this.paths = paths;
 		}
-		AsynImageLoader asynImageLoader = new AsynImageLoader();
+
+        public void setPaths(String[] paths){
+            this.paths = paths;
+        }
 		@Override
 		public int getCount() {
-			return 3;
+			return TOP_PAGES;
 		}
 
 		@Override
@@ -410,15 +393,24 @@ public class MainActivity extends SlidingActivity{
 			// task.execute(R.drawable.placehold);
 			// loadBitmap(0, imageView);
 			AsynImageLoader asynImageLoader = new AsynImageLoader();
-			asynImageLoader
-					.showImageAsyn(MainActivity.this,imageView,
-							ConstSysConfig.SERVER_ROOT + paths[position], R.drawable.placehold);
+            if(paths == null){
+                imageView.setImageResource(R.drawable.placehold);
+            }else {
+                asynImageLoader
+                        .showImageAsyn(MainActivity.this, imageView,
+                                ConstSysConfig.SERVER_ROOT + paths[position], R.drawable.placehold);
+            }
 			imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 			container.addView(imageView, lp);
 			return imageView;
 		}
 
-		@Override
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
+        }
+
+        @Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
 			container.removeView((ImageView) object);
 		}
@@ -470,8 +462,7 @@ public class MainActivity extends SlidingActivity{
 	}
 
 	private void exitLogin() {
-		SharedPreferences pref = getSharedPreferences(PreferenceKeys.FILE_NAME,
-				MODE_PRIVATE);
+		SharedPreferences pref = getSharedPreferences(PreferenceKeys.FILE_NAME,MODE_PRIVATE);
 		pref.edit().putBoolean(PreferenceKeys.SYS_USER_LOGIN, false).commit();
 		pref.edit().putString(PreferenceKeys.SYS_USER_NAME, "").commit();
 	}
@@ -514,10 +505,10 @@ public class MainActivity extends SlidingActivity{
 							JSONObject item = object.getJSONObject(i);
 							paths[i] = item.getString("advUrl");
 						}
-						mPagerAdapter = new TopPagerViewAdapter(paths);
-						mViewPager.setAdapter(mPagerAdapter);
+                        mPagerAdapter.setPaths(paths);
+                        mPagerAdapter.notifyDataSetChanged();
 					}else{
-						Log.e(TAG, "getAdv() fail: msg="+msg);
+						Log.e(TAG, "getAdv() fail: msg="+msg+",object="+object);
 					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block

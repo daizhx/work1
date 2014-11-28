@@ -415,4 +415,13 @@
     <string name="disconnectbluetooth">蓝牙未连接</string>
     <string name="bluetooth_devices">蓝牙设备</string>
     <string name="not_support_device">错误的设备</string>
+    <string name="bt_connect_success">蓝牙连接成功</string>
+    <string name="bt_connect_fail">蓝牙连接失败</string>
+    <string name="address">地址</string>
+    <string name="please_enter_your_address">请输入地址</string>
+    <string name="please_enter_your_age">请输入你的年龄</string>
+    <string name="please_enter_your_height">请输入你的身高</string>
+    <string name="weight">体重</string>
+    <string name="please_enter_your_weight">请输入你的体重</string>
+    <string name="improve_personal_information">个人信息</string>
 </resources>

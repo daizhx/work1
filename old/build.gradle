@@ -24,5 +24,6 @@ dependencies {
     compile project(':slideMenuLibrary')
     compile project(':http')
     compile project(':update')
+    compile project(':Bluetooth')
     compile 'com.android.support:appcompat-v7:20.0.0'
 }

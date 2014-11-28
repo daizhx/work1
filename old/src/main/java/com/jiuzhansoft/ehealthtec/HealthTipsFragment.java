@@ -98,26 +98,21 @@ public class HealthTipsFragment extends Fragment {
 		AsynImageLoader asynImageLoader = new AsynImageLoader(false);
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
-			Log.d(TAG, "datalist.size=" + datalist.size());
 			return datalist.size();
 		}
 
 		@Override
 		public Object getItem(int arg0) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public long getItemId(int arg0) {
-			// TODO Auto-generated method stub
 			return arg0;
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			Holder holder;
 			if (convertView == null) {
 				holder = new Holder();
@@ -141,7 +136,6 @@ public class HealthTipsFragment extends Fragment {
 					0);
 			
 			holder.title.setText((String) map.get("title"));
-			//����ժҪ
 			String shortContent =  (String) map.get("content");
 			if(shortContent.length() > 40){
 				shortContent = shortContent.substring(0, 30);
@@ -166,14 +160,6 @@ public class HealthTipsFragment extends Fragment {
 		HttpSetting httpSetting = new HttpSetting();
 		httpSetting.setFunctionId(ConstFuncId.HEALTH_TIPS);
 		httpSetting.setRequestMethod("GET");
-//		JSONObject jsonObject = new JSONObject();
-//		try {
-//			jsonObject.put("pageNo", 1);
-//		} catch (JSONException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		httpSetting.setJsonParams(jsonObject);
 		httpSetting.addArrayListParam("1");
 		httpSetting.setListener(new HttpGroup.OnAllListener() {
 

@@ -3,7 +3,8 @@ package com.jiuzhansoft.ehealthtec.massager.musicMassage;
 import java.io.IOException;
 import java.util.List;
 
-import com.jiuzhansoft.ehealthtec.bluetooth.BluetoothServiceProxy;
+import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
+import com.jiuzhansoft.ehealthtec.R;
 import com.jiuzhansoft.ehealthtec.log.Log;
 
 import android.app.ActivityManager;
@@ -284,12 +285,11 @@ public class MusicService extends Service implements OnCompletionListener{
 	        						if(Log.E) {
 			        					Log.e("run", "test");
 			        				}
-			        				try {
-										BluetoothServiceProxy.sendCommandToDevice(message);
-									} catch (Exception e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
+
+									if(!BluetoothServiceProxy.sendCommandToDevice(message)){
+                                        Toast.makeText(MusicService.this,getString(R.string.disconnectbluetooth),Toast.LENGTH_SHORT).show();
+                                    }
+
 	        					}
 	        				}, 0);
 	            	count = 0;

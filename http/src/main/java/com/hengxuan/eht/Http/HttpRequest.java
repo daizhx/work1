@@ -444,14 +444,14 @@ public class HttpRequest implements HttpGroup.StopController {
                             String param = httpSetting.getJsonParams().toString();
                             Log.d(TAG, "signature add param="+param);
                             if(httpSetting.isGet()){
-                                String apiSignature = EhtWebUtil.sgin(ConstSysConfig.APP_KEY, Long.toString(time), ConstSysConfig.SECRET, HttpGroup.token, "");
+                                String apiSignature = EhtWebUtil.sgin(ConstSysConfig.APP_KEY, Long.toString(time), ConstSysConfig.SECRET, httpSetting.token, "");
                                 conn.setRequestProperty("signature", apiSignature);
                             }else {
-                                String apiSignature = EhtWebUtil.sgin(ConstSysConfig.APP_KEY, Long.toString(time), ConstSysConfig.SECRET, HttpGroup.token, param);
+                                String apiSignature = EhtWebUtil.sgin(ConstSysConfig.APP_KEY, Long.toString(time), ConstSysConfig.SECRET, httpSetting.token, param);
                                 conn.setRequestProperty("signature", apiSignature);
                             }
 							conn.setRequestProperty("timestamp", Long.toString(time));
-							conn.setRequestProperty("token", HttpGroup.token);
+							conn.setRequestProperty("token", httpSetting.token);
 							conn.setRequestProperty("appKey", ConstSysConfig.APP_KEY);
 						}
 						// set cookies
@@ -560,7 +560,12 @@ public class HttpRequest implements HttpGroup.StopController {
 					HttpRequest.this.notify();
 				}
 			}
-		};
+
+            @Override
+            public void onGetToken(String str) {
+                httpSetting.token = str;
+            }
+        };
 		// add handler to List
 		// add proxy handler to list
 		handlers.add(proxyHandler);
@@ -690,20 +695,74 @@ public class HttpRequest implements HttpGroup.StopController {
 			//TODO
 		}
 	}
+    public static void getToken(final HttpGroup.CompleteListener completeListener){
+        final HttpSetting httpSetting = new HttpSetting();
+        httpSetting.setFunctionModal("token");
+        httpSetting.setFunctionId("getToken");
+        httpSetting.setRequestMethod("GET");
+        httpSetting.setListener(new HttpGroup.OnAllListener() {
+
+            @Override
+            public void onProgress(int i, int j) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onError(HttpError httpError) {
+                // TODO Auto-generated method stub
+                Log.d(TAG, "get token onError!");
+                if (completeListener != null){
+                    completeListener.onComplete(null);
+                }
+            }
+
+            @Override
+            public void onEnd(HttpResponse response) {
+                // TODO Auto-generated method stub
+                Log.d(TAG, "get token onEnd!");
+                JSONObjectProxy json = response.getJSONObject();
+                if(json != null){
+                    Log.d(TAG, "get token: "+ json.toString());
+                    String token = null;
+                    try {
+                        token = json.getString("object");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    if (completeListener != null){
+                        completeListener.onGetToken(token);
+                        TokenPool.getTokenPool().addToken(token);
+                        completeListener.onComplete(null);
+                    }
+                }
+            }
+
+            @Override
+            public void onStart() {
+                // TODO Auto-generated method stub
+                Log.d(TAG, "get token onStart!");
+            }
+        });
+        HttpGroupaAsynPool.getHttpGroupaAsynPool().add(httpSetting);
+    }
 
 	private void beforeConnection() throws Exception{
-		Log.d(TAG, "beforeconnection token="+HttpGroup.token);
-		if(HttpGroup.token == null && !httpSetting.getFunctionId().equals("getToken")){
-			HttpGroup.getToken(this.continueListener);
-			synchronized (HttpRequest.this) {
-				try {
-					HttpRequest.this.wait();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-            if(HttpGroup.token == null){
+		Log.d(TAG, "beforeconnection token="+httpSetting.token);
+		if(!httpSetting.getFunctionId().equals("getToken")){
+            TokenPool tokenPool = TokenPool.getTokenPool();
+            httpSetting.token = tokenPool.getToken();
+            if(httpSetting.token == null) {
+                getToken(this.continueListener);
+                synchronized (HttpRequest.this) {
+                    try {
+                        HttpRequest.this.wait();
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if(httpSetting.token == null){
                 //获取token失败
                 throw new Exception("get token fail!");
             }

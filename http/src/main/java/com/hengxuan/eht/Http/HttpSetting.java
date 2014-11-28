@@ -49,8 +49,9 @@ public class HttpSetting implements HttpGroup.HttpSettingParams {
 	//is to show progress of the http task -- daizhx
 	private boolean showProgress;
 
+    String token;
+
 	public HttpSetting() {
-		//Ĭ��Ϊget��ʽ
 		requestMethod = ConstSysConfig.REQUEST_METHOD;
 		notifyUser = false;
 		notifyUserWithExit = false;
@@ -119,7 +120,6 @@ public class HttpSetting implements HttpGroup.HttpSettingParams {
 		if (md5 == null) {
 			url = getUrl();
 			if (url != null) {
-				// ȡ�õ�ַ�����������
 				int i = 0;
 				int j = 0;
 				while (j < 3) {
@@ -138,13 +138,7 @@ public class HttpSetting implements HttpGroup.HttpSettingParams {
 						md5 = Md5Encrypt.md5(s2);
 						retMd5 = md5;
 					}
-//					if (Log.D) {
-//						StringBuilder stringbuilder1 = (new StringBuilder(
-//								"urlPath -->> ")).append(s2).append(
-//								" md5 -->> ");
-//						String s6 = stringbuilder1.append(md5).toString();
-//						Log.d("HttpGroup", s6);
-//					}
+
 				} else {
 					retMd5 = null;
 				}
@@ -240,7 +234,7 @@ public class HttpSetting implements HttpGroup.HttpSettingParams {
 				onEndListener.onEnd(paramHttpResponse);	
 			}
 		});
-		
+		TokenPool.getTokenPool().backToken(token);
 	}
 
 	public void onError(final HttpError paramHttpError) {
@@ -255,6 +249,7 @@ public class HttpSetting implements HttpGroup.HttpSettingParams {
                 onErrorListener.onError(paramHttpError);
             }
         });
+        TokenPool.getTokenPool().backToken(token);
 	}
 
 	public void onProgress(int paramInt1, int paramInt2) {

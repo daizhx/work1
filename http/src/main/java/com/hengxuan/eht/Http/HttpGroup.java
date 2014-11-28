@@ -27,6 +27,7 @@ public abstract class HttpGroup{
     private Context mContext;
 	public interface CompleteListener {
 		public abstract void onComplete(Bundle paramBundle);
+        public abstract void onGetToken(String str);
 	}
 
 	public interface CustomOnAllListener extends OnAllListener {
@@ -119,7 +120,6 @@ public abstract class HttpGroup{
 	private static int httpIdCounter = 0;
 	static String mMd5Key;
 	static JSONObjectProxy mModules;
-	static String token = "85f7425e-3bb2-44d3-be48-095139146ea2";
 
 //	protected static final int readTimeout = Integer.parseInt(Configuration.getProperty("readTimeout"));
 
@@ -206,56 +206,6 @@ public abstract class HttpGroup{
 		return retUrlAndParams;
 	}
 
-	public static void getToken(final CompleteListener completeListener){
-		HttpSetting httpSetting = new HttpSetting();
-		httpSetting.setFunctionModal("token");
-		httpSetting.setFunctionId("getToken");
-		httpSetting.setRequestMethod("GET");
-		httpSetting.setListener(new OnAllListener() {
-			
-			@Override
-			public void onProgress(int i, int j) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void onError(HttpError httpError) {
-				// TODO Auto-generated method stub
-				Log.d(TAG, "get token onError!");
-                if (completeListener != null){
-                    completeListener.onComplete(null);
-                }
-			}
-			
-			@Override
-			public void onEnd(HttpResponse response) {
-				// TODO Auto-generated method stub
-				Log.d(TAG, "get token onEnd!");
-				JSONObjectProxy json = response.getJSONObject();
-				if(json != null){
-					Log.d(TAG, "get token: "+ json.toString());
-					try {
-						token = json.getString("object");
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					if (completeListener != null){
-						completeListener.onComplete(null);
-					}
-				}
-			}
-			
-			@Override
-			public void onStart() {
-				// TODO Auto-generated method stub
-				Log.d(TAG, "get token onStart!");
-			}
-		});
-		HttpGroupaAsynPool.getHttpGroupaAsynPool().add(httpSetting);
-	}
-	
 	public static void queryMd5Key(CompleteListener completelistener) {
 		
 		HttpGroupSetting httpgroupsetting = new HttpGroupSetting();

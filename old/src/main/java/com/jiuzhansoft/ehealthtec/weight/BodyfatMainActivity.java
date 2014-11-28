@@ -186,9 +186,7 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 			}
 			
 		});
-		
-		//�����ؽ���
-		
+
 		weightText = (TextView)findViewById(R.id.weight_data);
 		BMIText = (TextView)findViewById(R.id.bmi_data);
 		bluetooth = (ImageButton)findViewById(R.id.bodyfat_blue);
@@ -329,8 +327,7 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 		this.registerReceiver(mReceiver, filter);
 		filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
 		this.registerReceiver(mReceiver, filter);
-		
-		//��Ϣ����
+
 		bmiListView = (ListView)findViewById(R.id.bmi_list);
 		fatListView = (ListView)findViewById(R.id.fat_list);
 		calurieListView = (ListView)findViewById(R.id.calurie_list);

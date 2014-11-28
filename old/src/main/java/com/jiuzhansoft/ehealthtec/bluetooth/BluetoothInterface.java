@@ -29,13 +29,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
 import com.jiuzhansoft.ehealthtec.R;
 import com.jiuzhansoft.ehealthtec.activity.BaseActivity;
 import com.jiuzhansoft.ehealthtec.massager.MassagerActivity;
 
-/**
- * 鎵撳紑鎼滅储钃濈墮璁惧椤甸潰
- */
+
 public class BluetoothInterface extends BaseActivity {
 
 	final int MSG_CONNECT_OK = 0;
@@ -44,8 +43,8 @@ public class BluetoothInterface extends BaseActivity {
 	private static final String TAG = "";
 	private BluetoothAdapter mAdapter = null;
 	private Map<String, String> blueToothInfo = null;
-	private Map<String, Boolean> BlueToothDeviceConnectState;// 锟斤拷前锟借备锟斤拷锟斤拷状态
-	private Map<String, Boolean> BlueToothDeviceBoundState;// 锟斤拷前锟借备锟斤拷锟阶刺�
+	private Map<String, Boolean> BlueToothDeviceConnectState;
+	private Map<String, Boolean> BlueToothDeviceBoundState;
 	private List<Map<String, String>> NewDevices;
 	public BroadcastReceiver mReceiver;
 	int CurrentFindDevicesCount;

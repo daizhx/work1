@@ -13,20 +13,20 @@ public class BluetoothUtils {
 
 	public static void open() {
 		if (mAdapter == null)
-			mAdapter = BluetoothAdapter.getDefaultAdapter();// ��ȡ���õ�����������
+			mAdapter = BluetoothAdapter.getDefaultAdapter();
 		if (mAdapter == null)
 			return;
-		if (!mAdapter.isEnabled()) { // �ж������Ƿ񱻴�
+		if (!mAdapter.isEnabled()) {
 			mAdapter.enable();
 		}
 	}
 	
 	public static void openWithIntent(Activity context){
 		if (mAdapter == null)
-			mAdapter = BluetoothAdapter.getDefaultAdapter();// ��ȡ���õ�����������
+			mAdapter = BluetoothAdapter.getDefaultAdapter();
 		if (mAdapter == null)
 			return;
-		if (!mAdapter.isEnabled()) { // �ж������Ƿ񱻴�
+		if (!mAdapter.isEnabled()) {
 			Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 			context.startActivityForResult(intent, REQUEST_ENABLE_BT);
 		}		

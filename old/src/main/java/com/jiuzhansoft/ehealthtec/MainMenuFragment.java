@@ -44,7 +44,6 @@ public class MainMenuFragment extends Fragment implements OnClickListener {
 	private String tip;
 	private View rootView;
 
-	// ����UI
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -181,7 +180,6 @@ public class MainMenuFragment extends Fragment implements OnClickListener {
 			@Override
 			public void onEnd(HttpResponse response) {
 				JSONObjectProxy json = response.getJSONObject();
-				Log.d("daizhx", " json="+json);
 				if(json == null)return;
 				try {
 					int code = json.getInt("code");

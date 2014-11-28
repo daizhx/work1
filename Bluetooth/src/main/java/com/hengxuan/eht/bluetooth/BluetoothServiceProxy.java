@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -89,33 +90,6 @@ public class BluetoothServiceProxy {
 		   return shortBuf;
 	}
 
-    /**
-     * 蓝牙通信异常，关闭蓝牙连接
-     */
-	static private void connectIOException(){
-
-        /*
-		if (MusicService.isServiceRunning(context,"com.jiuzhansoft.ehealthtec.service.MusicService")) {
-			Intent musicintent = new Intent();
-			musicintent.setClass(context, MusicService.class);
-			context.stopService(musicintent);
-		}
-		*/
-		if (outStream != null) {
-            try {
-            	outStream.flush();
-            	outStream = null;
-            } catch (IOException e) {
-                    e.printStackTrace();
-            }
-		}
-		disconnectBluetooth();
-		
-//		Intent intent = new Intent(context, BluetoothDeviceInterface.class);
-//		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//		context.startActivity(intent);
-	}
-
 	static public Boolean sendCommandToDevice(short command)
 	{
 		StringBuilder strBuilder = new StringBuilder("command = ").append(command);
@@ -133,7 +107,7 @@ public class BluetoothServiceProxy {
 							outStream.write(msgBuffer);
                             return true;
 						}catch(Exception e){
-							connectIOException();
+							disconnectBluetooth();
 						}
 					}
 				} else {
@@ -150,7 +124,7 @@ public class BluetoothServiceProxy {
 						outStream.write(msgBuffer);
                         return true;
 					}catch(Exception e){
-						connectIOException();
+						disconnectBluetooth();
 					}
 				}
 			}
@@ -188,36 +162,18 @@ public class BluetoothServiceProxy {
 		}
 	}
 
-    /**
-     *关闭蓝牙适配器
-     */
-	static public void closeBluetoothAdapter()
-	{
-		BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
-		disconnectBluetooth();
-		if(mAdapter != null)
-		{
-			/*
-			if(mAdapter.isDiscovering())
-			{
-				mAdapter.cancelDiscovery();
-			}
-			if(mAdapter.isEnabled() && BlueToothInfo.open_flag)
-			{
-				mAdapter.disable();
-			}
-			*/
-			mAdapter.cancelDiscovery();
-			mAdapter.disable();
-		}
-	}
 	static public Boolean isconnect()
 	{
 		if(btSocket != null){
-			return true;
+            if(Build.VERSION.SDK_INT >= 14) {
+                if (btSocket.isConnected()) {
+                    return true;
+                }
+            }else{
+                return true;
+            }
 		}
-		else
-			return false;
+		return false;
 	}
 
 

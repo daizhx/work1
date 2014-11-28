@@ -52,13 +52,10 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
-import com.jiuzhansoft.ehealthtec.MainActivity;
 import com.jiuzhansoft.ehealthtec.R;
-import com.jiuzhansoft.ehealthtec.activity.BaseActivity;
-import com.jiuzhansoft.ehealthtec.bluetooth.BluetoothServiceProxy;
-import com.jiuzhansoft.ehealthtec.massager.MassagerActivity;
 import com.jiuzhansoft.ehealthtec.massager.musicMassage.MusicService.MusicServiceBinder;
 import com.jiuzhansoft.ehealthtec.massager.musicMassage.MusicService.OnSongChangedListener;
 import com.jiuzhansoft.ehealthtec.massager.musicMassage.MusicService.OnUpdatePlaytime;

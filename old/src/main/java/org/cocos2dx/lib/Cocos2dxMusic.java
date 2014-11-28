@@ -23,7 +23,7 @@ THE SOFTWARE.
  ****************************************************************************/
 package org.cocos2dx.lib;
 
-import com.jiuzhansoft.ehealthtec.bluetooth.BluetoothServiceProxy;
+import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
 import com.jiuzhansoft.ehealthtec.log.Log;
 
 import android.content.Context;

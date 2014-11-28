@@ -3,8 +3,9 @@ package com.jiuzhansoft.ehealthtec.massager;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
 import com.jiuzhansoft.ehealthtec.R;
-import com.jiuzhansoft.ehealthtec.bluetooth.BluetoothServiceProxy;
+import com.jiuzhansoft.ehealthtec.activity.BTBaseActivity;
 import com.jiuzhansoft.ehealthtec.log.Log;
 
 import android.animation.Animator;
@@ -450,18 +451,14 @@ public class ModeSettingFragment extends Fragment implements View.OnClickListene
 		Log.d("daizhx", "setBTCommand mode select:"+mycommandId);
 		if(BluetoothServiceProxy.isconnect()) {
 			Handler handler = new Handler();
-			handler.postDelayed(new Runnable() { //��Ħ����������
+			handler.postDelayed(new Runnable() {
 
 				@Override
 				public void run() {
-					try {
-						BluetoothServiceProxy.sendCommandToDevice(mycommandId);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						BluetoothServiceProxy.disconnectBluetooth();
-						((MassagerActivity)getActivity()).setBTDisconnect();
-					}
+					if(!BluetoothServiceProxy.sendCommandToDevice(mycommandId)){
+                        ((BTBaseActivity)getActivity()).btIndicatorOff();
+                        Toast.makeText(getActivity(), getString(R.string.disconnectbluetooth),Toast.LENGTH_SHORT).show();
+                    }
 				}
 
 			}, 0L);

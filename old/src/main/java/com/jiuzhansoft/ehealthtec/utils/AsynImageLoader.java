@@ -50,12 +50,11 @@ public class AsynImageLoader {
 		mContext = c;
 		imageView.setTag(url);
 		Bitmap bitmap = loadImageAsyn(url, getImageCallback(imageView));
-		
+		Log.d("daizhx", "showImageAsyn bitmap="+bitmap);
 		if(bitmap == null){
 			imageView.setImageResource(resId);
 		}else{
 			imageView.setImageBitmap(bitmap);
-//			fillBitmap(imageView, bitmap);
 		}
 
 	}
@@ -79,20 +78,15 @@ public class AsynImageLoader {
 	
 	public Bitmap loadImageAsyn(String path, ImageCallback callback){
 		if(caches.containsKey(path)){
-			// ȡ��������
 			SoftReference<Bitmap> rf = caches.get(path);
-			// ͨ�������ã���ȡͼƬ
 			Bitmap bitmap = rf.get();
-			// �����ͼƬ�Ѿ����ͷţ��򽫸�path��Ӧ�ļ���Map���Ƴ���
 			if(bitmap == null){
 				caches.remove(path);
 			}else{
-				// ���ͼƬδ���ͷţ�ֱ�ӷ��ظ�ͼƬ
 				Log.i(TAG, "return image in cache" + path);
 				return bitmap;
 			}
 		}else{
-			//�ж��Ƿ���������disk��
 			if(isCacheDisk){
 				
 			File cacheFile = FileUtil.getDiskCacheFile(mContext, null, FileUtil.getFileName(path));
@@ -107,21 +101,19 @@ public class AsynImageLoader {
 				
 			}
 			}
-			// ��������в����ڸ�ͼƬ���򴴽�ͼƬ��������
+
 			Task task = new Task();
 			task.path = path;
 			task.callback = callback;
 			Log.i(TAG, "new Task ," + path);
 			if(!taskQueue.contains(task)){
 				taskQueue.add(task);
-				// �����������ض���
 				synchronized (runnable) {
 					runnable.notify();
 				}
 			}
 		}
-		
-		// ������û��ͼƬ�򷵻�null
+
 		return null;
 	}
 	
@@ -148,9 +140,7 @@ public class AsynImageLoader {
 
 		@Override
 		public void handleMessage(Message msg) {
-			// ���߳��з��ص�������ɵ�����
 			Task task = (Task)msg.obj;
-			// ����callback�����loadImage����������ͼƬ·����ͼƬ�ش���adapter
 			task.callback.loadImage(task.path, task.bitmap);
 		}
 		
@@ -161,13 +151,9 @@ public class AsynImageLoader {
 		@Override
 		public void run() {
 			while(isRunning){
-				// �������л���δ���������ʱ��ִ����������
 				Log.d(TAG, "runing");
 				while(taskQueue.size() > 0){
-					// ��ȡ��һ�����񣬲���֮�����������ɾ��
 					Task task = taskQueue.remove(0);
-					
-					// �����ص�ͼƬ��ӵ�����
 					if(isCacheDisk){
 						task.bitmap = PicUtil.getbitmapAndwrite(mContext, task.path);
 					}else{
@@ -177,15 +163,11 @@ public class AsynImageLoader {
 					caches.put(task.path, new SoftReference<Bitmap>(task.bitmap));
 					
 					if(handler != null){
-						// ������Ϣ���󣬲�����ɵ�������ӵ���Ϣ������
 						Message msg = handler.obtainMessage();
 						msg.obj = task;
-						// ������Ϣ�����߳�
 						handler.sendMessage(msg);
 					}
 				}
-				
-				//�������Ϊ��,�����̵߳ȴ�
 				synchronized (this) {
 					try {
 						this.wait();
@@ -196,18 +178,14 @@ public class AsynImageLoader {
 			}
 		}
 	};
-	
-	//�ص��ӿ�
+
 	public interface ImageCallback{
 		void loadImage(String path, Bitmap bitmap);
 	}
 	
 	class Task{
-		// �������������·��
 		String path;
-		// ���ص�ͼƬ
 		Bitmap bitmap;
-		// �ص�����
 		ImageCallback callback;
 		
 		@Override

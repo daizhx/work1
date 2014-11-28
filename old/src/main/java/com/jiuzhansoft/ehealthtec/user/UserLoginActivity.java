@@ -103,7 +103,6 @@ public class UserLoginActivity extends BaseActivity {
 				try
 				{
 					JSONObject jsonobject = new JSONObject();
-					//�������
 					jsonobject.put("password", sUserPassword);
 					jsonobject.put("username", sUserName);
 					HttpSetting	httpsetting = new HttpSetting();
@@ -236,13 +235,7 @@ public class UserLoginActivity extends BaseActivity {
 	{
 		return mUserPassword.getText().toString();
 	}
-	
-	
-	/**
-	 * ��������
-	 * @param s
-	 * @return
-	 */
+
 	public static String EncryptPassword2(String s)
 	{
 		//TODO

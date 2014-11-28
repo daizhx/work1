@@ -1,7 +1,8 @@
 package com.jiuzhansoft.ehealthtec.massager;
 
+import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
 import com.jiuzhansoft.ehealthtec.R;
-import com.jiuzhansoft.ehealthtec.bluetooth.BluetoothServiceProxy;
+import com.jiuzhansoft.ehealthtec.activity.BTBaseActivity;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -74,14 +75,10 @@ public class TimeSettingFragment extends Fragment implements View.OnClickListene
 			intenthandler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					try {
-						BluetoothServiceProxy.sendCommandToDevice((short)(BluetoothServiceProxy.TIME_TAG +time));
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						BluetoothServiceProxy.disconnectBluetooth();
-						((MassagerActivity)getActivity()).setBTDisconnect();
-					}
+                    if(!BluetoothServiceProxy.sendCommandToDevice((short)(BluetoothServiceProxy.TIME_TAG +time))){
+                        ((BTBaseActivity)getActivity()).btIndicatorOff();
+                        Toast.makeText(getActivity(), getString(R.string.disconnectbluetooth),Toast.LENGTH_SHORT).show();
+                    }
 				}
 			}, 0L);
 		}else{
