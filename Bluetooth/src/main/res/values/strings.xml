@@ -4,4 +4,13 @@
     <string name="bluetoothmac">MAC地址</string>
     <string name="connect">连接</string>
     <string name="disconnectbluetooth">蓝牙未连接</string>
+    <string name="bt_connect_success">蓝牙连接成功</string>
+    <string name="bt_connect_fail">蓝牙连接失败</string>
+    <string name="pairing">正在配对</string>
+    <string name="paired">已配对</string>
+    <string name="cancelpair">取消配对</string>
+    <string name="startpair">开始配对</string>
+    <string name="no_device_found">未发现蓝牙设备</string>
+    <string name="not_found_device">未发现设备</string>
+    <string name="select_device">选择设备</string>
 </resources>
