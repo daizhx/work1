@@ -300,10 +300,10 @@ public class BTBaseActivity extends BaseActivity{
     }
 
     private void manualConnect() {
-        //TODO
         AlertDialog alertDialog = new AlertDialog.Builder(BTBaseActivity.this).create();
-        alertDialog.setMessage(getString(R.string.select_device));
-        ListView listView = alertDialog.getListView();
+        alertDialog.setTitle(getString(R.string.select_device));
+        ListView listView = new ListView(BTBaseActivity.this);
+        alertDialog.setView(listView);
         listView.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
