@@ -38,7 +38,6 @@ public class Tab1 extends Fragment {
     private String mParam2;
 
     private int mPages;
-    private View[] mViews;
     private int listWidth;
     private String[] mImageDirs;
     private String[] mPageTitles;
@@ -86,11 +85,6 @@ public class Tab1 extends Fragment {
             mPages = getArguments().getInt(ARG_PARAM1);
             mImageDirs = getArguments().getStringArray(ARG_PARAM2);
             mPageTitles = getArguments().getStringArray(ARG_PARAM3);
-            mViews = new View[mPages];
-        }
-        for(int i=0;i<mPages;i++) {
-            ListView imageList = (ListView) getLayoutInflater(savedInstanceState).inflate(R.layout.image_list, null);
-            mViews[i] = imageList;
         }
     }
 
@@ -164,7 +158,7 @@ public class Tab1 extends Fragment {
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
-            final ListView imageList = ((ListView)mViews[position]);
+            final ListView imageList = (ListView) LayoutInflater.from(getActivity()).inflate(R.layout.image_list,null);
             imageList.setAdapter(new ImageListAdapter(getActivity(), 1080, mImageDirs[position]));
             container.addView(imageList);
             return imageList;
@@ -172,7 +166,7 @@ public class Tab1 extends Fragment {
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            super.destroyItem(container, position, object);
+            container.removeView((View)object);
         }
 
     }

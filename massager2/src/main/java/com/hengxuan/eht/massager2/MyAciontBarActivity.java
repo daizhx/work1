@@ -42,6 +42,12 @@ public class MyAciontBarActivity extends BTBaseActivity implements BTIndicator {
         });
         actionBarRightIcon = (ImageView) v.findViewById(R.id.right_icon);
         actionBarRightIcon.setImageResource(R.drawable.bt_off);
+        actionBarRightIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scanBTDevices();
+            }
+        });
 //        setContentView(R.layout.activity_base);
         setIndicator(this);
     }

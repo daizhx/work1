@@ -44,8 +44,8 @@ public class BTBaseActivity extends ActionBarActivity{
     private static final String TARGET_DEVICE_NAME1 = "Ehealthtec";
     private static final String TARGET_DEVICE_NAME2 = "EHT";
 
-    private static final int CONNECT_SUCCESS = 1;
-    private static final int CONNECT_FAIL = 0;
+    public static final int CONNECT_SUCCESS = 1;
+    public static final int CONNECT_FAIL = 0;
     //handle the connectThread`s msg
     private Handler connectHandler = new Handler(){
         @Override
@@ -65,6 +65,16 @@ public class BTBaseActivity extends ActionBarActivity{
             }
         }
     };
+
+    public interface ConnectResultListener{
+        public void onConnectResult(int i);
+    }
+    public ConnectResultListener mConnectResultListener;
+    public void setConnectResultListener(ConnectResultListener l){
+        mConnectResultListener = l;
+    }
+
+
     private BroadcastReceiver mBTBroadcastReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -157,11 +167,10 @@ public class BTBaseActivity extends ActionBarActivity{
                 int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, 0);
                 if(state == BluetoothAdapter.STATE_ON){
                     btIndicatorTwinkle();
-                    scanBTDevices();
-                }else if(state == BluetoothAdapter.STATE_DISCONNECTING){
-                    btIndicatorTwinkle();
-                }else if(state == BluetoothAdapter.STATE_DISCONNECTED){
+                    mBluetoothAdapter.startDiscovery();
+                }else if(state == BluetoothAdapter.STATE_OFF){
                     btIndicatorOff();
+                    BluetoothServiceProxy.disconnectBluetooth();
                 }
 
             }
@@ -172,19 +181,17 @@ public class BTBaseActivity extends ActionBarActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        //如果已经连接了
-        if(BluetoothServiceProxy.isconnect()){
-            btIndicatorOn();
-            registerBTBroadcastReceiver();
-            return;
-        }
-
-        if(!mBluetoothAdapter.isEnabled()){
-            mBluetoothAdapter.enable();
-        }else{
-            scanBTDevices();
-        }
         registerBTBroadcastReceiver();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -193,12 +200,21 @@ public class BTBaseActivity extends ActionBarActivity{
         unregisterBIBroadcastReceiver();
     }
 
+    public void openBT(){
+        if(!mBluetoothAdapter.isEnabled()){
+            mBluetoothAdapter.enable();
+        }
+    }
     protected void setIndicator(BTIndicator indicator){
         mBTIndicator = indicator;
     }
 
 
     protected void scanBTDevices() {
+        if(!mBluetoothAdapter.isEnabled()){
+            mBluetoothAdapter.enable();
+            return;
+        }
         if(!mBluetoothAdapter.isDiscovering()) {
             btIndicatorTwinkle();
             mBluetoothAdapter.startDiscovery();
@@ -209,11 +225,17 @@ public class BTBaseActivity extends ActionBarActivity{
         if(mBTIndicator != null) {
             mBTIndicator.on();
         }
+        if(mConnectResultListener != null) {
+            mConnectResultListener.onConnectResult(1);
+        }
     }
 
     public void btIndicatorOff(){
         if(mBTIndicator != null) {
             mBTIndicator.off();
+        }
+        if(mConnectResultListener != null) {
+            mConnectResultListener.onConnectResult(0);
         }
     }
 
@@ -284,14 +306,16 @@ public class BTBaseActivity extends ActionBarActivity{
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        manualConnect();
+//        manualConnect();
+        //TODO create socket fail.
     }
 
     private void manualConnect() {
         //TODO
         AlertDialog alertDialog = new AlertDialog.Builder(BTBaseActivity.this).create();
-        alertDialog.setMessage(getString(R.string.select_device));
-        ListView listView = alertDialog.getListView();
+        alertDialog.setTitle(getString(R.string.select_device));
+        ListView listView = new ListView(BTBaseActivity.this);
+        alertDialog.setView(listView);
         listView.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
