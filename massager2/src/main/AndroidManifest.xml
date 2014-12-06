@@ -1,10 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hengxuan.eht.massager2">
+    package="com.hengxuan.eht.massager2" >
 
-    <application android:allowBackup="true"
-        android:label="@string/app_name"
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:theme="@style/AppTheme">
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".user.LoginActivity" />
+        <activity android:name=".user.RegisterActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".HelpActivity" />
+        <activity
+            android:name=".MusicMassageActivity"
+            android:label="@string/title_activity_music_massage"
+            android:parentActivityName=".MyAciontBarActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hengxuan.eht.massager2.MyActionBarActivity" />
+        </activity>
+        <service android:name=".MusicService"></service>
+        <activity android:name=".AboutActivity"/>
+        <activity android:name=".ResetPWActivity"/>
+        <activity android:name=".splash.SplashActivity"></activity>
 
     </application>
 

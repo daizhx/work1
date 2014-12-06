@@ -126,7 +126,6 @@ public class BloodPressureReport extends BaseActivity{
 
 			@Override
 			public void onTabChanged(String tabId) {
-				// TODO Auto-generated method stub
 				if(tabHost.getCurrentTab() == 0){
 					tabWidget.getChildAt(0).setBackgroundResource(R.drawable.bottom_selected);
 					tabWidget.getChildAt(1).setBackgroundResource(R.drawable.bottom_normal);
