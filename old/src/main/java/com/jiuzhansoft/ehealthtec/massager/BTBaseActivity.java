@@ -1,4 +1,4 @@
-package com.jiuzhansoft.ehealthtec.activity;
+package com.jiuzhansoft.ehealthtec.massager;
 
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
 import com.jiuzhansoft.ehealthtec.R;
+import com.jiuzhansoft.ehealthtec.activity.BaseActivity;
 import com.jiuzhansoft.ehealthtec.log.Log;
 
 import java.io.IOException;
@@ -33,9 +34,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * scan bt device and auto connect the target device
  * Created by Administrator on 2014/11/27.
  */
-public class BTBaseActivity extends BaseActivity{
+public class BTBaseActivity extends BaseActivity {
 
     private static final String TAG = "BTBaseActivity";
     //devices found
@@ -109,11 +111,14 @@ public class BTBaseActivity extends BaseActivity{
                     .equals("android.bluetooth.device.action.PAIRING_REQUEST")) {
                 BluetoothDevice btDevice = intent
                         .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                String strPsw = "1234";
-                try {
-                    setPin(btDevice.getClass(), btDevice, strPsw);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                String name = btDevice.getName();
+                if(name.equals(TARGET_DEVICE_NAME1) || name.equals(TARGET_DEVICE_NAME2)) {
+                    String strPsw = "1234";
+                    try {
+                        setPin(btDevice.getClass(), btDevice, strPsw);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
@@ -163,10 +168,9 @@ public class BTBaseActivity extends BaseActivity{
                 if(state == BluetoothAdapter.STATE_ON){
                     btIndicatorTwinkle();
                     scanBTDevices();
-                }else if(state == BluetoothAdapter.STATE_DISCONNECTING){
-                    btIndicatorTwinkle();
-                }else if(state == BluetoothAdapter.STATE_DISCONNECTED){
+                }else if(state == BluetoothAdapter.STATE_OFF){
                     btIndicatorOff();
+                    BluetoothServiceProxy.disconnectBluetooth();
                 }
 
             }
@@ -260,25 +264,25 @@ public class BTBaseActivity extends BaseActivity{
         if(mBluetoothAdapter.isDiscovering()){
             mBluetoothAdapter.cancelDiscovery();
         }
-        try {
-            if (BluetoothServiceProxy.btSocket != null) {
-                if (BluetoothServiceProxy.outStream != null) {
-                    try {
-                        BluetoothServiceProxy.outStream.flush();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+        if (BluetoothServiceProxy.btSocket != null) {
+            if (BluetoothServiceProxy.outStream != null) {
                 try {
-                    BluetoothServiceProxy.btSocket.close();
-                    BluetoothServiceProxy.btSocket = null;
-                    BluetoothServiceProxy.mac = null;
-                    BluetoothServiceProxy.name = null;
-                } catch (IOException e2) {
-                    e2.printStackTrace();
+                    BluetoothServiceProxy.outStream.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
+            try {
+                BluetoothServiceProxy.btSocket.close();
+                BluetoothServiceProxy.btSocket = null;
+                BluetoothServiceProxy.mac = null;
+                BluetoothServiceProxy.name = null;
+            } catch (IOException e2) {
+                e2.printStackTrace();
+            }
+        }
 
+        try {
             Method m = device.getClass().getMethod("createRfcommSocket", new Class[]{int.class});
             BluetoothServiceProxy.btSocket = (BluetoothSocket) m.invoke(device, 1);
 
@@ -296,7 +300,9 @@ public class BTBaseActivity extends BaseActivity{
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        manualConnect();
+//        manualConnect();
+        //TODO create socket fail
+        Toast.makeText(BTBaseActivity.this,getString(R.string.can_not_connect_device),Toast.LENGTH_SHORT).show();
     }
 
     private void manualConnect() {

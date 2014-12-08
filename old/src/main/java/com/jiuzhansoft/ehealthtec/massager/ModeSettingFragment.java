@@ -1,34 +1,21 @@
 package com.jiuzhansoft.ehealthtec.massager;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
 import com.jiuzhansoft.ehealthtec.R;
-import com.jiuzhansoft.ehealthtec.activity.BTBaseActivity;
 import com.jiuzhansoft.ehealthtec.log.Log;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
-import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;

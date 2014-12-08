@@ -255,6 +255,11 @@ public class MusicService extends Service implements OnCompletionListener{
      * Mediaplayer播放mPlayPosition对应的音乐
      */
 	public void init(){
+        //fix bug,no songs will cause crash
+        if(mCursor.getCount() == 0){
+            return;
+        }
+        //end
 		mMediaPlayer.reset();
 		String dataSource = getDateByPositon(mCursor, mPlayPosition);
 		String info = getInfoByPostion(mCursor, mPlayPosition);

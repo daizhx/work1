@@ -3,7 +3,7 @@ package com.jiuzhansoft.ehealthtec.massager;
 import android.os.Bundle;
 
 import com.jiuzhansoft.ehealthtec.R;
-import com.jiuzhansoft.ehealthtec.activity.BTBaseActivity;
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;

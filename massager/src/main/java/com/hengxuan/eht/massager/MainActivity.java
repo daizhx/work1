@@ -42,6 +42,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.hengxuan.eht.logger.Log;
+import com.hengxuan.eht.massager.Music.MusicPlayerActivity;
 import com.hengxuan.eht.update.UpdateManager;
 import com.hengxuan.eht.user.User;
 import com.hengxuan.eht.utils.CommonUtil;
