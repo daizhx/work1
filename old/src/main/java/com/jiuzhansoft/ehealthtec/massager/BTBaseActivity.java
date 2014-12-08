@@ -1,4 +1,4 @@
-package com.jiuzhansoft.ehealthtec.activity;
+package com.jiuzhansoft.ehealthtec.massager;
 
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
 import com.jiuzhansoft.ehealthtec.R;
+import com.jiuzhansoft.ehealthtec.activity.BaseActivity;
 import com.jiuzhansoft.ehealthtec.log.Log;
 
 import java.io.IOException;
@@ -36,7 +37,7 @@ import java.util.List;
  * scan bt device and auto connect the target device
  * Created by Administrator on 2014/11/27.
  */
-public class BTBaseActivity extends BaseActivity{
+public class BTBaseActivity extends BaseActivity {
 
     private static final String TAG = "BTBaseActivity";
     //devices found

@@ -14,28 +14,32 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".BaseActivity">
+            android:name=".BaseActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".TreatmentActivity">
+            android:name=".TreatmentActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="massager.intent.action.DESEASE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name=".AsxActivity" >
+        <activity android:name=".AsxActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.hengxuan.eht.splash.StartActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
+            android:theme="@android:style/Theme.Light.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,14 +56,18 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.hengxuan.eht.bluetooth.BluetoothInterface" />
-        <activity android:name="com.hengxuan.eht.user.LoginActivity" />
-        <activity android:name="com.hengxuan.eht.user.RegisterActivity" />
+        <activity android:name="com.hengxuan.eht.bluetooth.BluetoothInterface"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.hengxuan.eht.user.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.hengxuan.eht.user.RegisterActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".VideoPlay"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_video_play"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".MediaControllerActivity"
@@ -67,7 +75,8 @@
             android:screenOrientation="landscape"
             android:theme="@style/FullscreenTheme" >
         </activity>
-        <activity android:name=".Music.MusicPlayerActivity" >
+        <activity android:name=".Music.MusicPlayerActivity"
+            android:screenOrientation="portrait">
         </activity>
 
         <service android:name=".Music.MusicService" >
@@ -80,19 +89,25 @@
         <activity
             android:name=".guide"
             android:label="@string/title_activity_guide"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".MassagerActivity"
-            android:label="@string/title_activity_massager" >
+            android:label="@string/title_activity_massager"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".AboutUsActivity" />
+        <activity android:name=".AboutUsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" >
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ResetPWActivity"/>
-        <activity android:name=".Music.SongListActivity"></activity>
+        <activity android:name=".ResetPWActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Music.SongListActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -2,11 +2,9 @@ package com.jiuzhansoft.ehealthtec.massager;
 
 import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
 import com.jiuzhansoft.ehealthtec.R;
-import com.jiuzhansoft.ehealthtec.activity.BTBaseActivity;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.drm.DrmStore.RightsStatus;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
