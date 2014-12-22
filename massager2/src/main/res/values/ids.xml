@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="bluetooth_item_name2" type="id">设备名称</item>
+    <item name="bluetooth_item_mac2" type="id">MAC地址</item>
+</resources>

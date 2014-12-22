@@ -201,7 +201,8 @@ public class BloodPressureShow extends BaseActivity implements OnClickListener, 
 			break;
 		case R.id.right_icon:		
 			if (rbxt.getService().getmState() == Msg.MESSAGE_STATE_CONNECTED){
-				rightIcon.setImageResource(R.drawable.bt_connectting_indicate);
+//				rightIcon.setImageResource(R.drawable.bt_connectting_indicate);
+                rightIcon.setImageResource(R.drawable.bt_off);
 				rbxt.getService().stop();
 				over();
 			}else{				
@@ -382,7 +383,6 @@ public class BloodPressureShow extends BaseActivity implements OnClickListener, 
 					}
 				}
 			}
-			if(mBtAdapter.isEnabled()){
 				if (mBtAdapter.isDiscovering()) {
 					mBtAdapter.cancelDiscovery();
 				}
@@ -391,13 +391,12 @@ public class BloodPressureShow extends BaseActivity implements OnClickListener, 
         		animationDrawable.start(); 
         		rightIcon.setEnabled(false);
 				mBtAdapter.startDiscovery();
-			}
 		}
     }
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
 		public void onReceive(Context context, Intent intent) {
 			String action = intent.getAction();
-
+            Log.d(TAG, "BroadcastReceiver action="+action);
 			if (BluetoothDevice.ACTION_FOUND.equals(action)) {
 				BluetoothDevice device = intent
 						.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);

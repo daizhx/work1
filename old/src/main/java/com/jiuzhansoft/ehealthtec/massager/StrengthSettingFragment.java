@@ -85,7 +85,7 @@ public class StrengthSettingFragment extends Fragment implements View.OnClickLis
 				@Override
 				public void run() {
                     if(!BluetoothServiceProxy.sendCommandToDevice(BluetoothServiceProxy.L_FR_TAG)){
-                        ((BTBaseActivity)getActivity()).btIndicatorOff();
+                        ((MassagerActivity)getActivity()).btIndicatorOff();
                         Toast.makeText(getActivity(), getString(R.string.disconnectbluetooth),Toast.LENGTH_SHORT).show();
                     }
 				}
@@ -97,7 +97,7 @@ public class StrengthSettingFragment extends Fragment implements View.OnClickLis
 				@Override
 				public void run() {
                     if(!BluetoothServiceProxy.sendCommandToDevice(BluetoothServiceProxy.H_FR_TAG)){
-                        ((BTBaseActivity)getActivity()).btIndicatorOff();
+                        ((MassagerActivity)getActivity()).btIndicatorOff();
                         Toast.makeText(getActivity(), getString(R.string.disconnectbluetooth),Toast.LENGTH_SHORT).show();
                     }
 				}
@@ -119,7 +119,7 @@ public class StrengthSettingFragment extends Fragment implements View.OnClickLis
 				public void run() {
 					// TODO Auto-generated method stub
                     if(!BluetoothServiceProxy.sendCommandToDevice((short)(BluetoothServiceProxy.STRENGTH_TAG+strength))){
-                        ((BTBaseActivity)getActivity()).btIndicatorOff();
+                        ((MassagerActivity)getActivity()).btIndicatorOff();
                         Toast.makeText(getActivity(), getString(R.string.disconnectbluetooth),Toast.LENGTH_SHORT).show();
                     }
 				}

@@ -9,12 +9,17 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.FontMetrics;
 import android.graphics.RectF;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.hengxuan.eht.massager.R;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TouchTimeView extends View {
 	
@@ -25,18 +30,30 @@ public class TouchTimeView extends View {
 	private Bitmap newBmp;
 	//���ߵĿ��
 	private float arcWidth;
-	//�Ƕ�
+	//0~360
 	private float rotateAngle;
-	//Բ��
+	//circle center point
 	private float pivotX,pivotY;
-	//���
-	private float startX,startY;
 	
 	private boolean isTouchCancel = false;
 	
 	private float mTxtWidth;
 	private float mTxtHeight;
 	private int currentTimeColor = 0xFF18befe;
+
+    private Timer mTimer;
+    private Handler timeHander = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if(rotateAngle <= 0){
+                mTimer.cancel();
+                return;
+            }
+            float eliminateAngle = (float)360/(30*12);
+            rotateAngle -= eliminateAngle;
+            invalidate();
+        }
+    };
 	
 	public interface OnTimeChangeListener{
 		void onTimeChange(int time);
@@ -50,16 +67,15 @@ public class TouchTimeView extends View {
 	
 	public TouchTimeView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = false;
 		options.inScaled = false;
 		bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.timer_bg, options);
+//        mTimer = new Timer();
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		// TODO Auto-generated method stub
 		super.onDraw(canvas);
 		Paint paint = new Paint();
 		int w = getMeasuredWidth();
@@ -78,16 +94,13 @@ public class TouchTimeView extends View {
 		arcWidth = r1/8;
 		pivotX = w/2;
 		pivotY = h/2;
-		startX = w/2;
-		startY = 0;
 		
 		RectF oval = new RectF(arcWidth/2, arcWidth/2, (float)w - arcWidth/2, (float)h - arcWidth/2);
 		paint.setStyle(Paint.Style.STROKE);
 		paint.setColor(getResources().getColor(R.color.main_color2));
 		paint.setStrokeWidth(arcWidth);
 		canvas.drawArc(oval, -90, rotateAngle, false, paint);
-		
-		//�м������
+
 		Paint mTextPaint = new Paint();
 		mTextPaint.setAntiAlias(true);
 		mTextPaint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -107,7 +120,6 @@ public class TouchTimeView extends View {
 	float preX = 0,preY = 0;
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		// TODO Auto-generated method stub
 //		int index = event.getActionIndex();
 //		int action = event.getActionMasked();
 //		int pointerId = event.getPointerId(index);
@@ -116,15 +128,12 @@ public class TouchTimeView extends View {
 		case MotionEvent.ACTION_DOWN:
 			preX = event.getX();
 			preY = event.getY();
-			Log.d("daizhx", "ACTION_DOWN:prex="+preX+",prey="+preY);
 			double angle3 = calculatorAngle(preX, preY);
-			Log.d("daizhx", "angle3="+angle3);
 			break;
 		case MotionEvent.ACTION_MOVE:
 			if(!isTouchCancel){
 			float x = event.getX();
 			float y = event.getY();
-			Log.d("daizhx", "ACTION_MOVE:x="+preX+",y="+preY);
 			double angle1 = calculatorAngle(preX, preY);
 			double angle2 = calculatorAngle(x, y);
 			double angle = angle2 - angle1;
@@ -157,6 +166,17 @@ public class TouchTimeView extends View {
 				int time = (int)((rotateAngle/360)*30);
 				mOnTimeChangeListener.onTimeChange(time);
 			}
+            if(mTimer != null){
+                mTimer.cancel();
+                mTimer.purge();
+            }
+            mTimer = new Timer();
+            mTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    timeHander.sendEmptyMessage(0);
+                }
+            }, 1000*5, 1000*5);
 			break;
 
 		default:

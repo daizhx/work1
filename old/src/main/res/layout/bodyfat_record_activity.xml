@@ -4,9 +4,7 @@
   	android:layout_height="fill_parent"
   	android:orientation="vertical"
   	xmlns:android="http://schemas.android.com/apk/res/android"> 
-  	
-  	<include layout="@layout/title" android:layout_weight="10"/>
-  	
+
   	<RelativeLayout 
   		android:layout_width="fill_parent"
   		android:layout_height="fill_parent"
@@ -114,7 +112,7 @@
   			android:layout_toLeftOf="@id/bodyfat_record_split_line"/>
   	</RelativeLayout>
   	
-  	<com.jiuzhansoft.ehealthtec.subActivity.bodyfat.BodyfatRecordScrollView
+  	<com.jiuzhansoft.ehealthtec.weight.BodyfatRecordScrollView
 	  		android:id="@+id/bodyfat_scroll"
 	  		android:layout_width="fill_parent"
 	  		android:layout_height="fill_parent"

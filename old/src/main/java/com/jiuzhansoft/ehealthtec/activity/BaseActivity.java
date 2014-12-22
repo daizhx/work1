@@ -41,6 +41,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 /**
  * @author Administrator
  *
@@ -118,6 +120,7 @@ public class BaseActivity extends FragmentActivity {
 		FrameLayout content = (FrameLayout)findViewById(R.id.content);
 		getLayoutInflater().inflate(layoutId, content);
 	}
+
 
 	@Override
 	protected void onResume() {

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +45,7 @@ public class Tab1 extends Fragment {
 
 
     private OnFragmentInteractionListener mListener;
-
+    private int mDisplayWidth;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -86,6 +87,9 @@ public class Tab1 extends Fragment {
             mImageDirs = getArguments().getStringArray(ARG_PARAM2);
             mPageTitles = getArguments().getStringArray(ARG_PARAM3);
         }
+        DisplayMetrics metrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        mDisplayWidth = metrics.widthPixels;
     }
 
     @Override
@@ -159,7 +163,7 @@ public class Tab1 extends Fragment {
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             final ListView imageList = (ListView) LayoutInflater.from(getActivity()).inflate(R.layout.image_list,null);
-            imageList.setAdapter(new ImageListAdapter(getActivity(), 1080, mImageDirs[position]));
+            imageList.setAdapter(new ImageListAdapter(getActivity(), mDisplayWidth, mImageDirs[position]));
             container.addView(imageList);
             return imageList;
         }

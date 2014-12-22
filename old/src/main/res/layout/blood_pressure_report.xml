@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/startbg"
     android:orientation="vertical" >
 
     <TabHost
@@ -48,7 +47,7 @@
                                 android:layout_weight="4"
                                 android:gravity="center"
                                 android:text="@string/who_ish_standard"
-                                android:textColor="#ffffff" />
+                                />
 
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -107,7 +106,6 @@
                                         android:layout_weight="1"
                                         android:gravity="center_vertical"
                                         android:text="@string/diastolic_pressure_line_feed"
-                                        android:textColor="#ffffff"
                                         android:textSize="10sp" />
                                 </LinearLayout>
 
@@ -154,7 +152,6 @@
                                                     android:layout_height="fill_parent"
                                                     android:layout_weight="1"
                                                     android:text="@string/the_most_appropriate_value"
-                                                    android:textColor="#ffffff"
                                                     android:textSize="8sp" />
                                             </LinearLayout>
 
@@ -174,7 +171,6 @@
                                                     android:layout_height="fill_parent"
                                                     android:layout_weight="1"
                                                     android:text="@string/normal_value"
-                                                    android:textColor="#ffffff"
                                                     android:textSize="8sp" />
                                             </LinearLayout>
 
@@ -194,7 +190,6 @@
                                                     android:layout_height="fill_parent"
                                                     android:layout_weight="1"
                                                     android:text="@string/higher_than_normal_value"
-                                                    android:textColor="#ffffff"
                                                     android:textSize="8sp" />
                                             </LinearLayout>
                                         </LinearLayout>
@@ -221,7 +216,6 @@
                                                     android:layout_height="fill_parent"
                                                     android:layout_weight="2"
                                                     android:text="@string/mild_hypertension"
-                                                    android:textColor="#ffffff"
                                                     android:textSize="8sp" />
                                             </LinearLayout>
 
@@ -241,7 +235,6 @@
                                                     android:layout_height="fill_parent"
                                                     android:layout_weight="2"
                                                     android:text="@string/moderate_hypertension"
-                                                    android:textColor="#ffffff"
                                                     android:textSize="8sp" />
                                             </LinearLayout>
 
@@ -261,7 +254,6 @@
                                                     android:layout_height="fill_parent"
                                                     android:layout_weight="2"
                                                     android:text="@string/severe_hypertension"
-                                                    android:textColor="#ffffff"
                                                     android:textSize="8sp" />
                                             </LinearLayout>
                                         </LinearLayout>
@@ -303,7 +295,6 @@
                                         android:layout_weight="4"
                                         android:gravity="left|top"
                                         android:text="@string/systolic_pressure_line_feed"
-                                        android:textColor="#ffffff"
                                         android:textSize="10sp" />
                                 </LinearLayout>
                             </LinearLayout>
@@ -443,7 +434,6 @@
                             android:layout_weight="2"
                             android:gravity="center"
                             android:text="@string/date"
-                            android:textColor="#ffffff"
                             android:textSize="18dip" />
 
                         <TextView
@@ -453,7 +443,6 @@
                             android:layout_weight="3"
                             android:gravity="center"
                             android:text="@string/systolic_pressure_result_show"
-                            android:textColor="#ffffff"
                             android:textSize="18dip" />
 
                         <TextView
@@ -463,7 +452,6 @@
                             android:layout_weight="3"
                             android:gravity="center"
                             android:text="@string/diastolic_pressure_result_show"
-                            android:textColor="#ffffff"
                             android:textSize="18dip" />
 
                         <TextView
@@ -473,7 +461,6 @@
                             android:layout_weight="3"
                             android:gravity="center"
                             android:text="@string/pulse_result_show"
-                            android:textColor="#ffffff"
                             android:textSize="18dip" />
                     </LinearLayout>
 <!--

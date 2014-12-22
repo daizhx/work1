@@ -56,7 +56,7 @@ public class MusicMassageActivity extends MyAciontBarActivity implements View.On
             musicService.setSongChangedListener(new MusicService.OnSongChangedListener() {
 
                 @Override
-                public void onSongChanged(int position, int duration) {
+                public void onSongChanged(String title,String artist, int duration) {
 //                    HashMap<String, String> infomap = datalist.get(position);
 //                    String musicname = infomap.get(getResources().getString(R.string.musicname));
 //					tvSong.setText(musicname);
@@ -80,14 +80,14 @@ public class MusicMassageActivity extends MyAciontBarActivity implements View.On
                     mSeekBar.setProgress(time);
                 }
             });
-            musicService.setOnBTDisconnectListener(new MusicService.OnBTDisconnectListener() {
-                @Override
-                public void onBTDisconnect() {
-                    stopService(new Intent(MusicMassageActivity.this, MusicService.class));
-                    finish();
-//                    musicService.stopSelf();
-                }
-            });
+//            musicService.setOnBTDisconnectListener(new MusicService.OnBTDisconnectListener() {
+//                @Override
+//                public void onBTDisconnect() {
+//                    stopService(new Intent(MusicMassageActivity.this, MusicService.class));
+//                    finish();
+////                    musicService.stopSelf();
+//                }
+//            });
         }
     };
     @Override
@@ -102,15 +102,6 @@ public class MusicMassageActivity extends MyAciontBarActivity implements View.On
         mNext.setOnClickListener(this);
         tvDuration = (TextView)findViewById(R.id.duration);
 
-        if (!MusicService.isServiceRunning(MusicMassageActivity.this)) {
-            try {
-                BluetoothServiceProxy.sendCommandToDevice(BluetoothServiceProxy.MODE_TAG_8);
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-
         component = new ComponentName(this, MusicService.class);
         //bind MusicService
         Intent intent = new Intent();
@@ -121,6 +112,10 @@ public class MusicMassageActivity extends MyAciontBarActivity implements View.On
 
     @Override
     public void onClick(View v) {
+        if(!BluetoothServiceProxy.isconnect()){
+            startActivity(new Intent(MusicMassageActivity.this,BluetoothInterface.class));
+            return;
+        }
         if(v == mPrevious){
             musicService.previous();
             mPlay.setImageResource(R.drawable.ic_music_pause);

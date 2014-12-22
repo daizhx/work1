@@ -443,7 +443,7 @@ public class ModeSettingFragment extends Fragment implements View.OnClickListene
 				@Override
 				public void run() {
 					if(!BluetoothServiceProxy.sendCommandToDevice(mycommandId)){
-                        ((BTBaseActivity)getActivity()).btIndicatorOff();
+                        ((MassagerActivity)getActivity()).btIndicatorOff();
                         Toast.makeText(getActivity(), getString(R.string.disconnectbluetooth),Toast.LENGTH_SHORT).show();
                     }
 				}

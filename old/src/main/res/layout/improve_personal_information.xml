@@ -1,47 +1,298 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:background="@drawable/startbg" android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content">
-        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="vertical">
-            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dip">
-                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="2" android:text="@string/name" android:textSize="20sp" android:textColor="@color/white" android:singleLine="true" android:layout_marginLeft="15dip"/>
-                <EditText android:id="@+id/improve_real_name" android:background="@drawable/edit_text_x" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1" android:hint="@string/user_name_hint" android:singleLine="true" android:textColor="#00ffff" android:textSize="18dip" android:gravity="center_vertical" android:textColorHint="#00ffff" android:layout_marginRight="10dip"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:layout_weight="2"
+                    android:singleLine="true"
+                    android:text="@string/name"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/improve_real_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_x"
+                    android:gravity="center_vertical"
+                    android:hint="@string/user_name_hint"
+                    android:singleLine="true"
+                    android:textColorHint="@color/gray"
+                    android:textSize="18dip" />
             </LinearLayout>
-            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dip">
-                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="2" android:text="@string/phone" android:textSize="20sp" android:textColor="@color/white" android:singleLine="true" android:layout_marginLeft="15dip"/>
-                <EditText android:id="@+id/improve_phone" android:background="@drawable/edit_text_x" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1" android:singleLine="true" android:textColor="#00ffff" android:textSize="18dip" android:gravity="center_vertical" android:textColorHint="#00ffff" android:layout_marginRight="10dip"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:layout_weight="2"
+                    android:singleLine="true"
+                    android:text="@string/phone"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/improve_phone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_x"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:hint="@string/input_phone_number_hint"
+                    android:textColorHint="@color/gray"
+                    android:textSize="18dip" />
             </LinearLayout>
-            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dip">
-                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="2" android:text="@string/address" android:textSize="20sp" android:textColor="@color/white" android:singleLine="true" android:layout_marginLeft="15dip"/>
-                <EditText android:id="@+id/improve_address" android:background="@drawable/edit_text_x" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1" android:hint="@string/please_enter_your_address" android:singleLine="true" android:textColor="#00ffff" android:textSize="18dip" android:gravity="center_vertical" android:textColorHint="#00ffff" android:layout_marginRight="10dip"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:layout_weight="2"
+                    android:singleLine="true"
+                    android:text="@string/address"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/improve_address"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_x"
+                    android:gravity="center_vertical"
+                    android:hint="@string/please_enter_your_address"
+                    android:singleLine="true"
+                    android:textColorHint="@color/gray"
+                    android:textSize="18dip" />
             </LinearLayout>
-            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dip">
-                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="2" android:text="@string/age" android:textSize="20sp" android:textColor="@color/white" android:singleLine="true" android:layout_marginLeft="15dip"/>
-                <EditText android:id="@+id/improve_age" android:background="@drawable/edit_text_x" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1" android:hint="@string/please_enter_your_age" android:singleLine="true" android:textColor="#00ffff" android:textSize="18dip" android:gravity="center_vertical" android:textColorHint="#ff0000" android:layout_marginRight="10dip"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:layout_weight="2"
+                    android:singleLine="true"
+                    android:text="@string/age"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/improve_age"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_x"
+                    android:gravity="center_vertical"
+                    android:hint="@string/please_enter_your_age"
+                    android:singleLine="true"
+                    android:textColorHint="#ff0000"
+                    android:textSize="18dip" />
             </LinearLayout>
-            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dip">
-                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="2" android:text="@string/height" android:textSize="20sp" android:textColor="@color/white" android:singleLine="true" android:layout_marginLeft="15dip"/>
-                <EditText android:id="@+id/improve_height" android:background="@drawable/edit_text_x" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1" android:hint="@string/please_enter_your_height" android:singleLine="true" android:textColor="#00ffff" android:textSize="18dip" android:gravity="center_vertical" android:textColorHint="#ff0000" android:layout_marginRight="10dip"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:layout_weight="2"
+                    android:singleLine="true"
+                    android:text="@string/height"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/improve_height"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_x"
+                    android:gravity="center_vertical"
+                    android:hint="@string/please_enter_your_height"
+                    android:singleLine="true"
+                    android:textColorHint="#ff0000"
+                    android:textSize="18dip" />
             </LinearLayout>
-            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dip">
-                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="2" android:text="@string/weight" android:textSize="20sp" android:textColor="@color/white" android:singleLine="true" android:layout_marginLeft="15dip"/>
-                <EditText android:id="@+id/improve_weight" android:background="@drawable/edit_text_x" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1" android:hint="@string/please_enter_your_weight" android:singleLine="true" android:textColor="#00ffff" android:textSize="18dip" android:gravity="center_vertical" android:textColorHint="#ff0000" android:layout_marginRight="10dip"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:layout_weight="2"
+                    android:singleLine="true"
+                    android:text="@string/weight"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/improve_weight"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_x"
+                    android:gravity="center_vertical"
+                    android:hint="@string/please_enter_your_weight"
+                    android:singleLine="true"
+                    android:textColorHint="#ff0000"
+                    android:textSize="18dip" />
             </LinearLayout>
-            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dip">
-                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="2" android:text="@string/email" android:textSize="20sp" android:textColor="@color/white" android:singleLine="true" android:layout_marginLeft="15dip"/>
-                <EditText android:id="@+id/improve_email" android:background="@drawable/edit_text_x" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1" android:hint="@string/register_mail_addr" android:singleLine="true" android:textColor="#00ffff" android:textSize="18dip" android:gravity="center_vertical" android:textColorHint="#00ffff" android:layout_marginRight="10dip"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:layout_weight="2"
+                    android:singleLine="true"
+                    android:text="@string/email"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/improve_email"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_x"
+                    android:gravity="center_vertical"
+                    android:hint="@string/register_mail_addr"
+                    android:singleLine="true"
+                    android:textColorHint="@color/gray"
+                    android:textSize="18dip" />
             </LinearLayout>
-            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dip">
-                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="2" android:text="@string/sex" android:textSize="20sp" android:textColor="@color/white" android:singleLine="true" android:layout_marginLeft="15dip"/>
-                <RadioGroup android:id="@+id/improve_sex" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal" android:gravity="center">
-                    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/improve_male" android:text="@string/male" android:textSize="20sp" android:textColor="@color/white" android:checked="true" android:layout_weight="1"></RadioButton>
-                    <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/improve_female" android:text="@string/female" android:textSize="20sp" android:textColor="@color/white" android:layout_weight="1"></RadioButton>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:layout_weight="2"
+                    android:singleLine="true"
+                    android:text="@string/sex"
+                    android:textSize="20sp" />
+
+                <RadioGroup
+                    android:id="@+id/improve_sex"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/improve_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="@string/male"
+                        android:textSize="20sp"></RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/improve_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/female"
+                        android:textSize="20sp"></RadioButton>
                 </RadioGroup>
             </LinearLayout>
-            <View android:layout_width="fill_parent" android:layout_height="wrap_content"  android:layout_marginTop="5dip" android:layout_marginBottom="10dip"/>
-            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dip">
-                <Button android:textSize="20.0sp" android:id="@+id/improve_submit" android:layout_width="150.0dip" android:layout_height="wrap_content" android:adjustViewBounds="true" android:text="@string/app_error_submit" android:layout_weight="1" android:layout_marginLeft="30dip" android:layout_marginRight="15dip" android:layout_marginBottom="30dip"/>
-                <Button android:textSize="20.0sp" android:id="@+id/improve_cancel" android:layout_width="150.0dip" android:layout_height="wrap_content" android:adjustViewBounds="true" android:text="@string/cancel" android:layout_weight="1" android:layout_marginLeft="15dip" android:layout_marginRight="30dip" android:layout_marginBottom="30dip"/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="5dip" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/improve_submit"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dip"
+                    android:layout_marginLeft="30dip"
+                    android:layout_marginRight="15dip"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:text="@string/app_error_submit"
+                    android:textSize="20.0sp" />
+
+                <Button
+                    android:id="@+id/improve_cancel"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dip"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginRight="30dip"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:text="@string/cancel"
+                    android:textSize="20.0sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

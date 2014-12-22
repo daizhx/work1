@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
+        <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
     </style>
 
     <style name="ActionBarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
@@ -11,10 +11,19 @@
     </style>
 
     <style name="MySeekBar">
-        <item name="android:maxHeight">12.0dip</item>
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/progress_bar</item>
-        <item name="android:minHeight">12.0dip</item>
-        <item name="android:thumbOffset">29.0dip</item>
+    </style>
+
+    <style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
+        <item name="android:background">@drawable/custom_tab_indicator</item>
+        <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
+        <item name="android:textColor">@color/tab_title</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:divider">@drawable/custom_tab_indicator_divider</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:fadingEdgeLength">8dp</item>
     </style>
 </resources>

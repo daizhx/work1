@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:name=".MyApplication"
@@ -36,6 +38,7 @@
         <activity android:name=".AboutActivity"/>
         <activity android:name=".ResetPWActivity"/>
         <activity android:name=".splash.SplashActivity"></activity>
+        <activity android:name=".BluetoothInterface"/>
 
     </application>
 

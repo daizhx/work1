@@ -92,9 +92,6 @@ public class BluetoothServiceProxy {
 
 	static public Boolean sendCommandToDevice(short command)
 	{
-		StringBuilder strBuilder = new StringBuilder("command = ").append(command);
-		Log.e("BlueTooth", "sendCommandToDevice()-" + strBuilder.toString());
-
 			if(btSocket != null)
 			{
 				if(command >= 0x1100)
@@ -129,7 +126,6 @@ public class BluetoothServiceProxy {
 				}
 			}
         //socket不可用 or socketIO异常
-        Log.e(TAG, "sendCommandToDevice()-" + strBuilder.toString() + " fail!"+"music_flag="+music_flag);
 		return false;
 	}
 

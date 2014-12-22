@@ -1,8 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bloodpressure_bg"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin">
     
    <!--  
 	<RelativeLayout 
@@ -36,7 +37,6 @@
             android:layout_marginTop="25dip"
             android:layout_marginLeft="25dip"
             android:textSize="16sp"
-            android:textColor="#ffffff"
             android:text="@string/please_sit_down_and_be_quiet" />
 
     <LinearLayout
@@ -72,14 +72,12 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="0"
-	            android:textColor="#ffffff"
 	            android:textSize="50dip"	        
 	            android:layout_centerHorizontal="true"/>
 	         <TextView
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="mmHg"
-	            android:textColor="#ffffff"
 	            android:textSize="35dip"	
 	            android:layout_below="@id/mmhg"        
 	            android:layout_centerHorizontal="true"/> 
@@ -91,8 +89,8 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"  
               android:layout_weight="5"
-              android:src="@drawable/kd" 
-         />  
+              android:src="@drawable/kd"
+         />
             <ProgressBar
              android:id="@+id/progress"
              style="@style/progressBar"

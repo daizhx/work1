@@ -12,6 +12,7 @@
     android:textColor="@color/white"
     android:textSize="20dip"
     android:paddingLeft="20dip"
+    android:paddingRight="20dp"
     android:text="adfsa"/>
     <View android:layout_width="fill_parent"
     android:layout_height="15dip"/>

@@ -45,7 +45,7 @@ public class BodyfatRecord extends com.jiuzhansoft.ehealthtec.activity.BaseActiv
 
 	private DisplayMetrics dm;
 	private TextView date, typeText, year, month, dataText, stateText, titleName, dateText;
-	private ImageButton back, arrawLeft, arrawRight;
+	private ImageButton arrawLeft, arrawRight;
 	
 	private BodyfatRecordScrollView record;
 	
@@ -73,7 +73,7 @@ public class BodyfatRecord extends com.jiuzhansoft.ehealthtec.activity.BaseActiv
 		male = sharedPreferences.getBoolean("sex", true);
 		height = sharedPreferences.getInt("height", 180);
 		
-		titleName = (TextView)findViewById(R.id.title_name);
+		titleName = mTitle;
 		
 		dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -86,17 +86,6 @@ public class BodyfatRecord extends com.jiuzhansoft.ehealthtec.activity.BaseActiv
 		date.setText(timestr);
 		
 		typeText = (TextView)findViewById(R.id.bodyfat_record_type);
-		
-		back = (ImageButton)findViewById(R.id.title_back);
-		back.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				finish();
-			}
-			
-		});
 		
 		indicator = (ImageView)findViewById(R.id.record_indicator);
 		indicatorBack = (ImageView)findViewById(R.id.record_indicator_background);

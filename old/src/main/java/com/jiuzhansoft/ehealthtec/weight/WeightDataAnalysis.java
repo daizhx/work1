@@ -15,12 +15,10 @@ import com.hengxuan.eht.Http.HttpError;
 import com.hengxuan.eht.Http.HttpGroup;
 import com.hengxuan.eht.Http.HttpGroupaAsynPool;
 import com.hengxuan.eht.Http.HttpResponse;
-import com.hengxuan.eht.Http.HttpGroupSetting;
 import com.hengxuan.eht.Http.constant.ConstFuncId;
 import com.hengxuan.eht.Http.constant.ConstHttpProp;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,7 +28,6 @@ import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,8 +39,7 @@ public class WeightDataAnalysis extends BaseActivity{
 	private SharedPreferences sharedPreferences;
 	private boolean animDone;
 	
-	private TextView date, titleName, personnalInfo;
-	private ImageButton back;
+	private TextView date, personnalInfo;
 	private int damp;
 	private float weight, BMI, fat, water, muscle, skeleton, calorie;	
 	private BodyfatScaleView scale;
@@ -58,15 +54,13 @@ public class WeightDataAnalysis extends BaseActivity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bodyfat_analysis);
-		
+		setTitle(R.string.weight_analysis);
 		sharedPreferences = getSharedPreferences(ConstSysConfig.SYS_CUST_CLIENT, 0);
 		age = sharedPreferences.getInt("age", 23);
 		male = sharedPreferences.getBoolean("sex", true);
 		height = sharedPreferences.getInt("height", 180);
 		hasSubmit = getIntent().getExtras().getBoolean("hasSubmit");
-		submitEnable = getIntent().getExtras().getBoolean("submitEnable");
-		titleName = (TextView)findViewById(R.id.title_name);
-		titleName.setText(getResources().getString(R.string.weight_analysis));
+		submitEnable = getIntent().getExtras().getBoolean("submitEnable");;
 		submit = (Button)findViewById(R.id.title_right);
 		
 		weight = getIntent().getExtras().getFloat("weight");
@@ -127,25 +121,25 @@ public class WeightDataAnalysis extends BaseActivity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(WeightDataAnalysis.this, ImprovePersonalInformation.class);
+				Intent intent = new Intent(WeightDataAnalysis.this, PersonalInformation.class);
 				startActivity(intent);
 			}
 			
 		});
 		
-		back = (ImageButton)findViewById(R.id.title_back);
-		back.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				intent.putExtra("hasSubmit", hasSubmit);
-				setResult(RESULT_OK, intent);
-				finish();
-			}
-			
-		});
+//		back = (ImageButton)findViewById(R.id.title_back);
+//		back.setOnClickListener(new OnClickListener(){
+//
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent intent = new Intent();
+//				intent.putExtra("hasSubmit", hasSubmit);
+//				setResult(RESULT_OK, intent);
+//				finish();
+//			}
+//
+//		});
 		scale = (BodyfatScaleView)findViewById(R.id.bodyfat_scale);
 		scale.setWeight(weight);
 		scale.invalidate();

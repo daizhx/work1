@@ -2,7 +2,9 @@ package com.jiuzhansoft.ehealthtec.massager;
 
 import android.os.Bundle;
 
+import com.hengxuan.eht.bluetooth.BTIndicator;
 import com.jiuzhansoft.ehealthtec.R;
+import com.jiuzhansoft.ehealthtec.activity.BaseExtBTActivity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -12,7 +14,7 @@ import android.app.FragmentTransaction;
 /**
  * Created by Administrator on 2014/11/27.
  */
-public class MassagerActivity extends BTBaseActivity implements FragmentChangeListener{
+public class MassagerActivity extends BaseExtBTActivity implements FragmentChangeListener,BTIndicator{
 
     private static final String TAG = "MassagerActivity";
     private FragmentManager mFrManager;
@@ -41,25 +43,6 @@ public class MassagerActivity extends BTBaseActivity implements FragmentChangeLi
         mFrManager.beginTransaction().add(R.id.fragment_container, (Fragment)mModeSettingFragment).commit();
 
     }
-
-    @Override
-    protected void onResume() {
-        // TODO Auto-generated method stub
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        // TODO Auto-generated method stub
-        super.onDestroy();
-    }
-
-
 
     @Override
     public void onChangeTimeSetting() {
@@ -96,4 +79,18 @@ public class MassagerActivity extends BTBaseActivity implements FragmentChangeLi
         transaction.commit();
     }
 
+    @Override
+    public void on() {
+        rightIcon.setImageResource(R.drawable.bt_on);
+    }
+
+    @Override
+    public void off() {
+        rightIcon.setImageResource(R.drawable.bt_off);
+    }
+
+    @Override
+    public void twinkle() {
+        rightIcon.setImageResource(R.drawable.bt_connectting_indicate);
+    }
 }

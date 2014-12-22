@@ -27,7 +27,7 @@
     <string name="massage_machine_modle7">自动</string>
     <string name="massage_machine_modle8">音乐按摩</string>
     <string name="settings">设置</string>
-    <string name="timer">计时器</string>
+    <string name="timer">定时</string>
     <string name="frequnce">频率</string>
     <string name="low_frequence">低频</string>
     <string name="high_frequence">中频</string>
@@ -68,5 +68,13 @@
     <string name="reset_password_faile">重置密码失败</string>
     <string name="title_activity_music_massage">MusicMassageActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="massager">按摩</string>
+    <string name="search_is_completed">搜索完成</string>
+    <string name="disconnect">未连接</string>
+    <string name="pair">配对</string>
+    <string name="pairing_fail">配对失败</string>
+    <string name="bluetooth_devices">蓝牙设备</string>
+    <string name="music_massage">音乐按摩</string>
+    <string name="no_song">没有歌曲</string>
 
 </resources>

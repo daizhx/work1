@@ -19,11 +19,9 @@ import com.hengxuan.eht.Http.HttpError;
 import com.hengxuan.eht.Http.HttpGroup;
 import com.hengxuan.eht.Http.HttpGroupaAsynPool;
 import com.hengxuan.eht.Http.HttpResponse;
-import com.hengxuan.eht.Http.HttpGroupSetting;
 import com.hengxuan.eht.Http.constant.ConstFuncId;
 import com.hengxuan.eht.Http.constant.ConstHttpProp;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -40,12 +38,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
 import android.util.TypedValue;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -69,7 +65,7 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 	
 	private TextView weightText;
 	private TextView BMIText, suggestion;
-	private ImageButton bluetooth, input;
+	private ImageButton input;
 //	private ImageButton back;
 	private BluetoothAdapter mBtAdapter; 
 	private ImageView weightCircle;
@@ -97,13 +93,13 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 		public void handleMessage(Message msg){
 			switch(msg.what){
 			case 0:
-				bluetooth.setImageResource(R.drawable.bt_off);
-				bluetooth.setEnabled(true);
+				rightIcon.setImageResource(R.drawable.bt_off);
+				rightIcon.setEnabled(true);
 				Toast.makeText(BodyfatMainActivity.this, getResources().getString(R.string.no_avavailable_bluetooth), Toast.LENGTH_LONG).show();
 				break;
 			case 1:
-				bluetooth.setImageResource(R.drawable.bt_on);
-				bluetooth.setEnabled(true);
+				rightIcon.setImageResource(R.drawable.bt_on);
+				rightIcon.setEnabled(true);
 				Toast.makeText(BodyfatMainActivity.this, getResources().getString(R.string.bluetooth_connection), Toast.LENGTH_LONG).show();
 				break;
 			}
@@ -115,6 +111,7 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setTitle(R.string.weighting_scale);
+        rightIcon.setImageResource(R.drawable.bt_off);
 		setContentView(R.layout.bodyfat_main_activity);
 		
 		if(rbxt == null){
@@ -141,7 +138,6 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if(sexChoice.getText().toString().equals(getResources().getString(R.string.male))){
 					loadInformation(true);
 					sexChoice.setText(getResources().getString(R.string.female));
@@ -161,7 +157,6 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				Date currentdate = new Date(System.currentTimeMillis());
 				String timestr = format.format(currentdate);
@@ -175,7 +170,6 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 
 			@Override
 			public void onTabChanged(String tabId) {
-				// TODO Auto-generated method stub
 				if(tabHost.getCurrentTab() == 0){
 					sexChoice.setVisibility(View.GONE);
 					submit.setVisibility(View.VISIBLE);
@@ -189,7 +183,6 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 
 		weightText = (TextView)findViewById(R.id.weight_data);
 		BMIText = (TextView)findViewById(R.id.bmi_data);
-		bluetooth = (ImageButton)findViewById(R.id.bodyfat_blue);
 //		back = (ImageButton)findViewById(R.id.title_back);
 		weightCircle = (ImageView)findViewById(R.id.bodyfat_bmi_circle);
 		weightCircle.setOnClickListener(new OnClickListener(){
@@ -234,13 +227,13 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
             }  
         });  
 
-		bluetooth.setOnClickListener(new OnClickListener(){
+		rightIcon.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (rbxt.getService().getmState() == BodyfatBluetoothService.STATE_CONNECTED){
-					bluetooth.setImageResource(R.drawable.bt_off);
+					rightIcon.setImageResource(R.drawable.bt_off);
 					rbxt.getService().stop();
 				}else{
 					connectBluetooth();
@@ -373,7 +366,7 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 				new String[]{"age", "low", "normal", "high"},
 				new int[]{R.id.bodyfat_water_age, R.id.bodyfat_water_low, R.id.bodyfat_water_normal, R.id.bodyfat_water_high});
 		waterListView.setAdapter(waterCalurie);
-		checkInfo();
+//		checkInfo();
 	}
 	
 	private void connectBluetooth(){
@@ -381,10 +374,10 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 			mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 		if(mBtAdapter.isEnabled() == false){
 			mBtAdapter.enable();
-			bluetooth.setImageResource(R.drawable.bt_connectting_indicate);
-    		AnimationDrawable animationDrawable = (AnimationDrawable) bluetooth.getDrawable();  
+			rightIcon.setImageResource(R.drawable.bt_connectting_indicate);
+    		AnimationDrawable animationDrawable = (AnimationDrawable) rightIcon.getDrawable();
     		animationDrawable.start(); 
-    		bluetooth.setEnabled(false);
+    		rightIcon.setEnabled(false);
 		}else{
 			Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
 
@@ -394,10 +387,10 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 						paired = true;
 						deviceBP = device;
 						rbxt.getService().setDevice(device);
-						bluetooth.setImageResource(R.drawable.bt_connectting_indicate);
-		        		AnimationDrawable animationDrawable = (AnimationDrawable) bluetooth.getDrawable();  
+						rightIcon.setImageResource(R.drawable.bt_connectting_indicate);
+		        		AnimationDrawable animationDrawable = (AnimationDrawable) rightIcon.getDrawable();
 		        		animationDrawable.start(); 
-		        		bluetooth.setEnabled(false);
+		        		rightIcon.setEnabled(false);
 						new BluetoothThread().start();
 						return;
 					}
@@ -407,10 +400,10 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 				if (mBtAdapter.isDiscovering()) {
 					mBtAdapter.cancelDiscovery();
 				}
-				bluetooth.setImageResource(R.drawable.bt_connectting_indicate);
-        		AnimationDrawable animationDrawable = (AnimationDrawable) bluetooth.getDrawable();  
+				rightIcon.setImageResource(R.drawable.bt_connectting_indicate);
+        		AnimationDrawable animationDrawable = (AnimationDrawable) rightIcon.getDrawable();
         		animationDrawable.start(); 
-        		bluetooth.setEnabled(false);
+        		rightIcon.setEnabled(false);
 				mBtAdapter.startDiscovery();
 			}
 		}
@@ -455,12 +448,12 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 				} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED
 						.equals(action)) {	
 					if (rbxt.getService().getmState() != 1 && connecting == false) {
-						bluetooth.setImageResource(R.drawable.bt_off);
+						rightIcon.setImageResource(R.drawable.bt_off);
 						Toast.makeText(BodyfatMainActivity.this, getResources().getString(R.string.no_avavailable_bluetooth), Toast.LENGTH_LONG).show();
 					}
 					if(connecting == false)
-						bluetooth.setImageResource(R.drawable.bt_off);
-					bluetooth.setEnabled(true);
+						rightIcon.setImageResource(R.drawable.bt_off);
+					rightIcon.setEnabled(true);
 				} else if(BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)){
 					if(mBtAdapter.isEnabled()){
 						Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
@@ -515,6 +508,9 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
 		case 5:
+            if(data == null){
+                break;
+            }
 			if(hasSubmit == false && data.getExtras().getBoolean("hasSubmit") == true){
 				submit.setText(getResources().getString(R.string.submitted));
 				submit.setEnabled(false);
@@ -856,7 +852,7 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 				public void onClick(DialogInterface arg0, int arg1) {
 					// TODO Auto-generated method stub
 					infoDialog.dismiss();
-					Intent intent = new Intent(BodyfatMainActivity.this, ImprovePersonalInformation.class);
+					Intent intent = new Intent(BodyfatMainActivity.this, PersonalInformation.class);
 					startActivity(intent);
 					finish();
 				}
@@ -878,11 +874,11 @@ public class BodyfatMainActivity extends BaseActivity implements BodyfatCallback
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		if(height != sharedPreferences.getInt("height", 0)){
-			height = sharedPreferences.getInt("height", 0);
-			BMIText.setText("BMI:" + new DecimalFormat("0.0").format(this.weight / height / height * 10000));
-			giveSuggestion((float) (this.weight / height / height * 10000));
-		}	
+//		if(height != sharedPreferences.getInt("height", 0)){
+//			height = sharedPreferences.getInt("height", 0);
+//			BMIText.setText("BMI:" + new DecimalFormat("0.0").format(this.weight / height / height * 10000));
+//			giveSuggestion((float) (this.weight / height / height * 10000));
+//		}
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -28,7 +29,7 @@ public class MainActivity extends MyAciontBarActivity implements Tab1.OnFragment
         Tab3.OnFragmentInteractionListener, Tab4.OnFragmentInteractionListener, SlideMenuFragment.OnFragmentInteractionListener{
     private Tab1 mTab1;
     private Tab1 mTab2;
-    private Tab3 mTab3;
+    private Tab2 mTab3;
     private Tab1 mTab4;
     private SlideMenuFragment mPersionCenterFragment;
     SlidingMenu menu;
@@ -123,7 +124,7 @@ public class MainActivity extends MyAciontBarActivity implements Tab1.OnFragment
         String[] deseases = new String[]{getString(R.string.desease_1),getString(R.string.desease_2),getString(R.string.desease_3),getString(R.string.desease_4),getString(R.string.desease_5),
                 getString(R.string.desease_6),getString(R.string.desease_7)};
         mTab2 = Tab1.newInstance(7,dirs,deseases);
-        mTab3 = Tab3.newInstance();
+        mTab3 = Tab2.newInstance();
         mTab4 = Tab1.newInstance(7,new String[]{"xw1","xw2","xw3","xw4","xw5","xw6","xw7"},deseases);
     }
 

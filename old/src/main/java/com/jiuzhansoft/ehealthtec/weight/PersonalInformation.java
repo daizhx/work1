@@ -7,11 +7,9 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.InputType;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.hengxuan.eht.Http.HttpError;
 import com.hengxuan.eht.Http.HttpGroup;
@@ -28,7 +26,7 @@ import com.jiuzhansoft.ehealthtec.utils.CommonUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ImprovePersonalInformation extends BaseActivity {
+public class PersonalInformation extends BaseActivity {
 
 
     private EditText realNameEdit, phoneNumEdit, addressEdit, ageEdit, heightEdit, weightEdit, emailEdit;
@@ -41,7 +39,6 @@ public class ImprovePersonalInformation extends BaseActivity {
 
     @Override
     public void onCreate(Bundle bundle) {
-        // TODO Auto-generated method stub
         super.onCreate(bundle);
         setContentView(R.layout.improve_personal_information);
         setTitle(R.string.improve_personal_information);
@@ -51,7 +48,6 @@ public class ImprovePersonalInformation extends BaseActivity {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                // TODO Auto-generated method stub
                 if(!hasFocus)
                     realNameCheck();
             }
@@ -63,7 +59,6 @@ public class ImprovePersonalInformation extends BaseActivity {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                // TODO Auto-generated method stub
                 if(!hasFocus)
                     phoneNumCheck();
             }
@@ -74,7 +69,6 @@ public class ImprovePersonalInformation extends BaseActivity {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                // TODO Auto-generated method stub
                 if(!hasFocus)
                     addressCheck();
             }
@@ -86,7 +80,6 @@ public class ImprovePersonalInformation extends BaseActivity {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                // TODO Auto-generated method stub
                 if(!hasFocus)
                     ageCheck();
             }
@@ -98,7 +91,6 @@ public class ImprovePersonalInformation extends BaseActivity {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                // TODO Auto-generated method stub
                 if(!hasFocus)
                     heightCheck();
             }
@@ -110,7 +102,6 @@ public class ImprovePersonalInformation extends BaseActivity {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                // TODO Auto-generated method stub
                 if(!hasFocus)
                     weightCheck();
             }
@@ -122,7 +113,6 @@ public class ImprovePersonalInformation extends BaseActivity {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                // TODO Auto-generated method stub
                 if(!hasFocus)
                     emailCheck();
             }
@@ -137,7 +127,6 @@ public class ImprovePersonalInformation extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 if(realNameCheck() && phoneNumCheck() && addressCheck() && ageCheck() && heightCheck() && weightCheck() && emailCheck()){
                     onSubmit();
                 }
@@ -149,7 +138,6 @@ public class ImprovePersonalInformation extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 finish();
             }
 
@@ -159,7 +147,6 @@ public class ImprovePersonalInformation extends BaseActivity {
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // TODO Auto-generated method stub
                 if(checkedId == R.id.improve_male){
                     sex = 1;
                 }else{
@@ -304,7 +291,7 @@ public class ImprovePersonalInformation extends BaseActivity {
                         try{
                             post(new Runnable() {
                                 public void run(){
-                                    final AlertDialog alertDialog = (new AlertDialog.Builder(ImprovePersonalInformation.this)).create();
+                                    final AlertDialog alertDialog = (new AlertDialog.Builder(PersonalInformation.this)).create();
                                     alertDialog.setMessage(getString(R.string.submit_success));
                                     alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL,getString(R.string.ok), new DialogInterface.OnClickListener() {
                                         @Override
@@ -356,7 +343,7 @@ public class ImprovePersonalInformation extends BaseActivity {
             public void run()
             {
                 // alertDialogBuilder.show();
-                final AlertDialog dialog = (new AlertDialog.Builder(ImprovePersonalInformation.this)).create();
+                final AlertDialog dialog = (new AlertDialog.Builder(PersonalInformation.this)).create();
                 dialog.setMessage(s);
                 dialog.setButton(DialogInterface.BUTTON_NEUTRAL,getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override

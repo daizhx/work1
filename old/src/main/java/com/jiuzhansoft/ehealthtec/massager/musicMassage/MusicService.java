@@ -39,31 +39,37 @@ public class MusicService extends Service implements OnCompletionListener{
 	private MediaPlayer mMediaPlayer;
 	private Cursor mCursor;
 	private int mPlayPosition = 0;
+    //current song
+    private String mTitle;
+    //current song artist
+    private String mArtist;
 	public static final String PLAY_ACTION = "com.jiuzhansoft.ehealthtec.service.PLAY_ACTION";
 	public static final String PAUSE_ACTION = "com.jiuzhansoft.ehealthtec.service.PAUSE_ACTION";
 	public static final String NEXT_ACTION = "ccom.hengxuan.ehealthplatform.service.NEXT_ACTION";
 	public static final String PREVIOUS_ACTION = "com.jiuzhansoft.ehealthtec.service.PREVIOUS_ACTION";
 	public static final String PLAY_RAMMUSIC = "com.jiuzhansoft.ehealthtec.service.PLAY_RAMMUSIC";
 	public static int SENDMESSAGE_TIME_GAP = 500;
-	
-	private SharedPreferences preferences;
-	private int currentPosition;
-	public static boolean flag = false;
+
+	public static boolean isPause = false;
 	
 	public static Visualizer mVisualizer;
 	protected short averagenum;
 	
-	private int count = 0;
-	
 	private Handler timeHandler;
+    //define play mode
+    private int mMode;
+    private static final int  SEQUENCY= 0;
+    private static final int LOOP = 1;
+    private static final int REPEAT = 2;
 	
 	//song play changed
+
 	public interface OnSongChangedListener{
-		void onSongChanged(int position, int duration);
+		void onSongChanged(String title,String artist, int duration);
 	}
 	
 	private OnSongChangedListener onSongChangedListener;
-	
+
 	public interface OnUpdatePlaytime{
 		void updatePlaytime(int time);
 	}
@@ -72,7 +78,6 @@ public class MusicService extends Service implements OnCompletionListener{
 	
 	@Override
 	public IBinder onBind(Intent arg0) {
-		// TODO Auto-generated method stub
 		return new MusicServiceBinder();
 	}
 	
@@ -86,11 +91,7 @@ public class MusicService extends Service implements OnCompletionListener{
         boolean isRunning = false;
         ActivityManager activityManager = (ActivityManager)mContext.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningServiceInfo> serviceList = activityManager.getRunningServices(Integer.MAX_VALUE);
-        
-        /*if (!(serviceList.size()>0)) {
-            return false;
-        }*/
-        
+
         for (int i=0; i<serviceList.size(); i++) {
        	 String strClassName = serviceList.get(i).service.getClassName();
             if (className.equalsIgnoreCase(strClassName)) {
@@ -98,99 +99,71 @@ public class MusicService extends Service implements OnCompletionListener{
                 break;
             }
         }
-        if(!isRunning){
-        	if(null != mVisualizer){
-        		mVisualizer.setEnabled(false);
-        		mVisualizer = null;
-        	}
-        }
+//        if(!isRunning){
+//        	if(null != mVisualizer){
+//        		mVisualizer.setEnabled(false);
+//        		mVisualizer = null;
+//        	}
+//        }
         return isRunning;
     }
 
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
 		super.onCreate();
-		// BlueToothInfo.sendCommandToDevice(BlueToothInfo.MODE_TAG_8);
-		
-		preferences = getSharedPreferences("getPosition", MODE_WORLD_READABLE);
-		currentPosition = preferences.getInt("currentPosition", -1);
-		if(currentPosition == -1)
-			mPlayPosition = 0;
-		else
-			mPlayPosition = currentPosition;
 		mMediaPlayer = new MediaPlayer();
 		Uri MUSIC_URL = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
 		mCursor = getContentResolver().query(MUSIC_URL, mCursorCols, "duration > 60000", null, null);
+        mMediaPlayer.setOnCompletionListener(this);
+        Log.d("daizhx","on create");
 	}
 
-	@Override
-	public void onStart(Intent intent, int startId) {
-		// TODO Auto-generated method stub
-		super.onStart(intent, startId);		
-		
-//		if(intent != null){
-//			String action = intent.getAction();
-//			if(action.equals(PLAY_ACTION)){
-//				play();
-//				mMediaPlayer.setOnCompletionListener(this);
-//			}
-//			else if(action.equals(PAUSE_ACTION))
-//				pause();
-//			else if(action.equals(NEXT_ACTION)){
-//				next();
-//				mMediaPlayer.setOnCompletionListener(this);
-//			}
-//			else if(action.equals(PREVIOUS_ACTION)){
-//				previous();
-//				mMediaPlayer.setOnCompletionListener(this);
-//			}
-//			else if(action.equals(PLAY_RAMMUSIC)){
-//				SharedPreferences preferences = getSharedPreferences("getPosition", MODE_WORLD_READABLE);
-//				int currentPosition = preferences.getInt("currentPosition", -1);
-//				if(currentPosition != -1){
-//					playMusic(currentPosition);
-//					mMediaPlayer.setOnCompletionListener(this);
-//				}
-//			}			
-//		}
-		mMediaPlayer.setOnCompletionListener(this);
-	}
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d("daizhx","on StartC");
 
-	public void play() {
-		// TODO Auto-generated method stub
-		if(flag){
+        return START_NOT_STICKY;
+    }
+
+    public void play() {
+		if(isPause){
 			mMediaPlayer.start();
-			flag = false;
+            if(onUpdatePlaytime != null) {
+                int time = mMediaPlayer.getCurrentPosition();
+                onUpdatePlaytime.updatePlaytime(time);
+            }
+            if(onSongChangedListener != null){
+                int duration = mMediaPlayer.getDuration();
+                onSongChangedListener.onSongChanged(mTitle,mArtist,duration);
+            }
+
+			isPause = false;
+            mVisualizer.setEnabled(true);
 		}else{
 			init();			
 		}
 	}
 
 	public void pause() {
-		// TODO Auto-generated method stub
-		//stopSelf();
 		mMediaPlayer.pause();
-		flag = true;
+		isPause = true;
+        mVisualizer.setEnabled(false);
 	}
 
 	public void next() {
-		// TODO Auto-generated method stub
-		if(mPlayPosition == mCursor.getCount() - 1)
-			mPlayPosition = 0;
-		else
-			mPlayPosition ++;
-		flag = false;
+		if(mPlayPosition == mCursor.getCount() - 1) {
+            mPlayPosition = 0;
+        }else {
+            mPlayPosition++;
+        }
 		init();
 	}
 
 	public void previous() {
-		// TODO Auto-generated method stub
 		if(mPlayPosition == 0)
 			mPlayPosition = mCursor.getCount() - 1;
 		else
 			mPlayPosition -- ;
-		flag = false;
 		init();
 	}
 	
@@ -216,15 +189,15 @@ public class MusicService extends Service implements OnCompletionListener{
 		if(m <0)
 			m = 0;
 		else if(m > 64)
-			m = 64;
-		m = (16 * m)/64; 
-		*/
-		if(amplitude < 0) {
-			amplitude = 0;
-		} else if(amplitude > 255) {
-			amplitude = 255;
-		}
-		
+
+        m = 64;
+        m = (16 * m)/64;
+        */
+        if(amplitude < 0) {
+            amplitude = 0;
+        } else if(amplitude > 255) {
+            amplitude = 255;
+        }
 		return amplitude + 0x1100;
 	}
 	
@@ -235,11 +208,18 @@ public class MusicService extends Service implements OnCompletionListener{
 	public void setOnUpdatePlaytime(OnUpdatePlaytime obj){
 		onUpdatePlaytime = obj;
 	}
-	
+
+    /**
+     * play music
+     */
 	public void init(){
+        if(mCursor.getCount() == 0){
+            Toast.makeText(MusicService.this,getString(R.string.no_song),Toast.LENGTH_SHORT).show();
+            return;
+        }
 		mMediaPlayer.reset();
 		String dataSource = getDateByPositon(mCursor, mPlayPosition);
-		String info = getInfoByPostion(mCursor, mPlayPosition);
+		getMusicInfo(mCursor, mPlayPosition);
 		
 		try{
 			mMediaPlayer.setDataSource(dataSource);
@@ -247,7 +227,7 @@ public class MusicService extends Service implements OnCompletionListener{
 			
 			int duration = mMediaPlayer.getDuration();
 			if(onSongChangedListener != null){
-				onSongChangedListener.onSongChanged(mPlayPosition, duration);
+				onSongChangedListener.onSongChanged(mTitle,mArtist, duration);
 			}
 			
 			if(mVisualizer != null){
@@ -260,15 +240,10 @@ public class MusicService extends Service implements OnCompletionListener{
 				@Override
 	            public void onWaveFormDataCapture(Visualizer visualizer,
 	                    byte[] waveform, int samplingRate){
-					if(flag || !MusicService.isServiceRunning(MusicService.this,"com.jiuzhansoft.ehealthtec.massager.musicMassage.MusicService")) {
-						return;
-					}
 					if(Log.E) {
 						StringBuilder strBuilder = new StringBuilder("len = ").append(waveform.length); 
     					Log.e("OnWaveFormDataCature : ", strBuilder.toString());
     				}
-					count = 0;
-	            			count ++;
 	            			if(Log.E) {
 								StringBuilder strBuilder = new StringBuilder("value = ").append(waveform[0] + 128); 
 		    					Log.e(" ", strBuilder.toString());
@@ -276,23 +251,20 @@ public class MusicService extends Service implements OnCompletionListener{
 	            			
 	            			final short message = (short)transformationCommandFormat(waveform[0] + 128);
 	            			// BlueToothInfo.sendCommandToDevice(message);
-	            			
-	            			Handler handler = new Handler();
-	        				handler.postDelayed(new Runnable() {
-
-	        					@Override
-	        					public void run() {
-	        						if(Log.E) {
-			        					Log.e("run", "test");
-			        				}
-
-									if(!BluetoothServiceProxy.sendCommandToDevice(message)){
-                                        Toast.makeText(MusicService.this,getString(R.string.disconnectbluetooth),Toast.LENGTH_SHORT).show();
-                                    }
-
-	        					}
-	        				}, 0);
-	            	count = 0;
+                            if(!BluetoothServiceProxy.sendCommandToDevice(message)){
+                                Toast.makeText(MusicService.this,getString(R.string.disconnectbluetooth),Toast.LENGTH_SHORT).show();
+                            }
+//	            			Handler handler = new Handler();
+//	        				handler.postDelayed(new Runnable() {
+//
+//	        					@Override
+//	        					public void run() {
+//									if(!BluetoothServiceProxy.sendCommandToDevice(message)){
+//                                        Toast.makeText(MusicService.this,getString(R.string.disconnectbluetooth),Toast.LENGTH_SHORT).show();
+//                                    }
+//
+//	        					}
+//	        				}, 0);
 	            }
 	 
 	            @Override
@@ -312,12 +284,13 @@ public class MusicService extends Service implements OnCompletionListener{
 						try{
 						if(mMediaPlayer.isPlaying()){
 							int currentTime = mMediaPlayer.getCurrentPosition();
-							onUpdatePlaytime.updatePlaytime(currentTime);
+                            if(onUpdatePlaytime != null) {
+                                onUpdatePlaytime.updatePlaytime(currentTime);
+                            }
 						}
 						}catch(IllegalStateException e){
 							return;
 						}
-
 					}
 					timeHandler.sendEmptyMessageDelayed(1, 600);
 				}
@@ -334,27 +307,23 @@ public class MusicService extends Service implements OnCompletionListener{
 	
 	public void playMusic(int position){
 		mPlayPosition = position;
-		flag = false;
+		isPause = false;
 		init();
 	}
 
 	private String getDateByPositon(Cursor c, int position) {
-		// TODO Auto-generated method stub
 		c.moveToPosition(position);
 		int dataColumn = c.getColumnIndex(MediaStore.Audio.Media.DATA);
 		String data = c.getString(dataColumn);
 		return data;
 	}
 
-	private String getInfoByPostion(Cursor c, int position) {
-		// TODO Auto-generated method stub
+	private void getMusicInfo(Cursor c, int position) {
 		c.moveToPosition(position);
 		int titleColumn = c.getColumnIndex(MediaStore.Audio.Media.TITLE);
 		int artistColumn = c.getColumnIndex(MediaStore.Audio.Media.ARTIST);
-		String info = c.getString(artistColumn)+" "+c.getString(titleColumn);
-		//musicArtist = c.getString(artistColumn);
-		//musicTitle = c.getString(titleColumn);
-		return info;
+        mTitle = c.getString(titleColumn);
+        mArtist = c.getString(artistColumn);
 	}
 
 	@Override
@@ -366,10 +335,26 @@ public class MusicService extends Service implements OnCompletionListener{
 
 	@Override
 	public void onCompletion(MediaPlayer mp) {
-		// TODO Auto-generated method stub
-		mPlayPosition = mPlayPosition + 1;
-		if(mPlayPosition == mCursor.getCount() - 1)
-			mPlayPosition = 0;
-		init();
+        switch (mMode){
+            case SEQUENCY:
+                if(mPlayPosition < mCursor.getCount() - 1){
+                    mPlayPosition = mPlayPosition + 1;
+                    init();
+                }
+                break;
+            case LOOP:
+                if(mPlayPosition < mCursor.getCount() - 1){
+                    mPlayPosition = mPlayPosition + 1;
+                    init();
+                }else{
+                    mPlayPosition = 0;
+                    init();
+                }
+            case REPEAT:
+                init();
+                break;
+            default:
+                break;
+        }
 	}
 }

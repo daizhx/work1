@@ -54,14 +54,9 @@
 			<RelativeLayout 
 				android:id="@+id/bodyfat_tab1"
 				android:layout_width="fill_parent"
-				android:layout_height="fill_parent">
-				<ImageButton
-					android:id="@+id/bodyfat_blue"
-  					android:layout_width="wrap_content"
-  					android:layout_height="wrap_content"
-  					android:background="@drawable/bt_off"
-  					android:layout_marginLeft="20dip"
-  					android:layout_marginTop="20dip"/>
+				android:layout_height="fill_parent"
+                >
+
   				<ImageButton 
   					android:id="@+id/bodyfat_input"
   					android:layout_width="wrap_content"
@@ -76,7 +71,7 @@
   					android:layout_width="fill_parent"
   					android:layout_height="fill_parent"
   					android:orientation="vertical"
-  					android:layout_below="@id/bodyfat_blue">
+  					android:layout_below="@id/bodyfat_input">
   					<RelativeLayout 
   						android:layout_width="fill_parent"
   						android:layout_height="fill_parent"
@@ -338,7 +333,8 @@
 			android:layout_width="fill_parent" 
 			android:layout_height="65dip"
 			android:layout_alignParentBottom="true"
-			android:background="@drawable/bottom_selector" >  
+			android:background="@drawable/bottom_selector"
+            >
      	</TabWidget>  
     </RelativeLayout>
   	</TabHost> 	

@@ -76,7 +76,7 @@ public class BluetoothService {
 	}
 
 	/**
-	 * ���ӷ���
+	 * bt socket connect
 	 */
 	public void connect() {
 		if (device != null) {

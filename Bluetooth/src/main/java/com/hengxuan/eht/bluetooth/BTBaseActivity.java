@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * a feature activity that can scan bt and connect a specify device automatically.
  * Created by Administrator on 2014/11/27.
  */
 public class BTBaseActivity extends ActionBarActivity{
@@ -129,7 +131,7 @@ public class BTBaseActivity extends ActionBarActivity{
                 }else{
                     for(BluetoothDevice device : mBTDevices){
                         String name = device.getName();
-                        if(name.equals(TARGET_DEVICE_NAME1) || name.equals(TARGET_DEVICE_NAME2)){
+                        if(name != null && (name.equals(TARGET_DEVICE_NAME1) || name.equals(TARGET_DEVICE_NAME2))){
                             mTargetDevices.add(device);
                         }
                     }

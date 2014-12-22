@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bluetooth_list_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dip"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dp"
+    android:paddingTop="10dip" >
+
+    <TextView
+        android:id="@+id/bluetooth_item_name1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dip"
+        android:layout_marginLeft="5.0dip"
+        android:layout_marginTop="20dp"
+        android:ellipsize="end"
+        android:text="@string/bluetoothname"
+        android:textColor="@color/soft_text_color"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/bluetooth_item_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dip"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/bluetooth_item_name1"
+        android:ellipsize="end"
+        android:textColor="@color/soft_text_color"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/bluetooth_item_mac1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bluetooth_item_name1"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="5.0dip"
+        android:ellipsize="end"
+        android:text="@string/bluetoothmac"
+        android:textColor="@color/soft_text_color"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/bluetooth_item_mac2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bluetooth_item_name2"
+        android:layout_marginLeft="10.0dip"
+        android:layout_toRightOf="@id/bluetooth_item_mac1"
+        android:ellipsize="end"
+        android:textColor="@color/soft_text_color"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/connection_item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bluetooth_item_name1"
+        android:layout_below="@id/bluetooth_item_mac1"
+        android:layout_marginRight="6.0dip"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg2"
+        android:text="@string/connect"
+        android:textColor="#ffffffff"
+        android:textSize="20dip" />
+
+</RelativeLayout>

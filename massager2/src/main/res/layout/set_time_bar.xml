@@ -51,6 +51,8 @@
         android:thumb="@null"
         style="@style/MySeekBar"
         android:id="@+id/seek_bar"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
         />
     </RelativeLayout>
 </LinearLayout>

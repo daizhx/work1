@@ -169,7 +169,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name=".weight.ImprovePersonalInformation" >
+        <activity android:name=".weight.PersonalInformation" >
         </activity>
         <activity android:name=".healthclub.EntriesActivity">
             <!-- 
@@ -222,6 +222,8 @@
         <activity android:name=".sphygmomanometer.ReportDateSelect"></activity>
         <activity android:name=".sphygmomanometer.BloodPressureReport"></activity>
         <activity android:name=".bluetooth.BluetoothDeviceList"></activity>
+        <activity android:name=".weight.WeightDataAnalysis"/>
+        <activity android:name=".weight.BodyfatRecord"/>
     </application>
 
 </manifest>

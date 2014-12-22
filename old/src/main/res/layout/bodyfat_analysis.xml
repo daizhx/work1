@@ -4,9 +4,7 @@
   	android:layout_height="fill_parent"
   	android:orientation="vertical"
   	xmlns:android="http://schemas.android.com/apk/res/android">
-  	
-  	<include layout="@layout/title"/>
-  	
+
   	<RelativeLayout 
   		android:layout_width="fill_parent"
   		android:layout_height="fill_parent"
@@ -56,7 +54,7 @@
   		android:layout_width="fill_parent"
   		android:layout_height="fill_parent"
   		android:layout_weight="9">
-  		<com.jiuzhansoft.ehealthtec.subActivity.bodyfat.BodyfatScaleView 
+  		<com.jiuzhansoft.ehealthtec.weight.BodyfatScaleView
 	  		android:id="@+id/bodyfat_scale"
 	  		android:layout_width="fill_parent"
 	  		android:layout_height="fill_parent"
@@ -392,5 +390,20 @@
   				android:layout_weight="1"/>
   		</LinearLayout>
   	</LinearLayout>
-  	
+
+    <Button
+        android:id="@+id/title_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/button_bg"
+        android:text="@string/app_error_submit"
+        android:textColor="#ffffffff"
+        android:textSize="20sp"
+        android:layout_marginTop="12dip"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip"
+        android:layout_gravity="center_horizontal"
+        android:visibility="visible"/>
 </LinearLayout>

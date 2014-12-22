@@ -75,7 +75,7 @@ public class TimeSettingFragment extends Fragment implements View.OnClickListene
 				@Override
 				public void run() {
                     if(!BluetoothServiceProxy.sendCommandToDevice((short)(BluetoothServiceProxy.TIME_TAG +time))){
-                        ((BTBaseActivity)getActivity()).btIndicatorOff();
+                        ((MassagerActivity)getActivity()).btIndicatorOff();
                         Toast.makeText(getActivity(), getString(R.string.disconnectbluetooth),Toast.LENGTH_SHORT).show();
                     }
 				}

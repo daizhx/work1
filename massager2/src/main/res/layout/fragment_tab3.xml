@@ -58,7 +58,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mask_layer"
-        android:background="@color/black_overlay">
+        android:background="@color/black_overlay"
+        android:visibility="gone">
 
         <ProgressBar
             android:layout_width="wrap_content"

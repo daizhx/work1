@@ -6,47 +6,52 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="16dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/play_progress">
 
         <SeekBar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/seekBar"
             android:thumb="@null"
             style="@style/MySeekBar"
+            android:progress="100"
+            android:max="100"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
             />
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layout_gravity="right"
             >
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/playtime"
                 android:text="00:00"
                 android:textScaleX="0.8"
-                android:textColor="@color/text_color"
+                android:textColor="@color/red"
                 android:layout_gravity="center_vertical"
-                android:textSize="16sp"/>
+                />
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:text="/"
-                android:textSize="16sp"/>
+                android:textColor="@color/red"
+                />
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/duration"
                 android:text="00:00"
                 android:textScaleX="0.8"
-                android:textColor="@color/text_color"
+                android:textColor="@color/red"
                 android:layout_gravity="center_vertical"
-                android:textSize="16sp"/>
+                />
             </LinearLayout>
     </FrameLayout>
 
