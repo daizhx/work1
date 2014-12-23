@@ -1,7 +1,7 @@
 package com.jiuzhansoft.ehealthtec.activity;
 
 import com.hengxuan.eht.bluetooth.BTActivity;
-import com.hengxuan.eht.bluetooth.BTBaseActivity;
+
 import java.io.InputStream;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
@@ -14,7 +14,6 @@ import com.jiuzhansoft.ehealthtec.log.Log;
 
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,7 +27,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.FragmentActivity;
 import android.util.FloatMath;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -38,7 +36,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;

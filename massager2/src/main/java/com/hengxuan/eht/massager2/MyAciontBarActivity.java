@@ -4,18 +4,15 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.LayoutParams;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hengxuan.eht.bluetooth.BTBaseActivity;
+import com.hengxuan.eht.bluetooth.BTActionBarActivity;
 import com.hengxuan.eht.bluetooth.BTIndicator;
 
 
-public class MyAciontBarActivity extends BTBaseActivity implements BTIndicator {
+public class MyAciontBarActivity extends BTActionBarActivity implements BTIndicator {
     protected ImageView actionBarLeftIcon;
     protected TextView actionBarTitle;
     protected  ImageView actionBarRightIcon;

@@ -128,7 +128,7 @@ public class BTActivity extends Activity {
                 }else{
                     for(BluetoothDevice device : mBTDevices){
                         String name = device.getName();
-                        if(name.equals(TARGET_DEVICE_NAME1) || name.equals(TARGET_DEVICE_NAME2)){
+                        if(name != null && (name.equals(TARGET_DEVICE_NAME1) || name.equals(TARGET_DEVICE_NAME2))){
                             mTargetDevices.add(device);
                         }
                     }
@@ -310,7 +310,6 @@ public class BTActivity extends Activity {
     }
 
     private void manualConnect() {
-        //TODO
         AlertDialog alertDialog = new AlertDialog.Builder(BTActivity.this).create();
         alertDialog.setTitle(getString(R.string.select_device));
         ListView listView = new ListView(BTActivity.this);

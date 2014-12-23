@@ -25,7 +25,6 @@ public class EHTApplication extends Application {
 	public NetworkStatusMonitor mNetworkStatusMonitor;
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
 		super.onCreate();
 		instance = this;
 		initProducts();
@@ -33,12 +32,7 @@ public class EHTApplication extends Application {
 		Thread.setDefaultUncaughtExceptionHandler(new MyUncaughtExceptionHandler(this));
 	}
 
-	/**
-	 * ע���Ʒ
-	 */
 	private void initProducts() {
-		// TODO Auto-generated method stub
-		//Ĭ�ϰ����Ĳ�Ʒ
 		Product massager = new Product(getString(R.string.massager), ConstEquipId.MASSAGEID, null, R.drawable.massager_icon, null);
 		massager.isRecentUse = true;//test
 		massager.setComments(R.string.massager_comment);
@@ -65,18 +59,15 @@ public class EHTApplication extends Application {
 		
 		Product lens_hair = new Product(getString(R.string.hair_analysis), ConstEquipId.LENSID, null, R.drawable.hair_entry, "com.ehealthplatform.intent.action.LENS_HAIR");
 		productList.add(lens_hair);
-		
-		//ע�����س�
+
 		Product weight_scale = new Product(getString(R.string.weighting_scale), ConstEquipId.WEIGHTID, null, R.drawable.weight_entry, "com.ehealthplatform.intent.action.WEIGHT");
 		productList.add(weight_scale);
-		
-		//ע��Ѫѹ��
+
 		Product sphygmomanometer = new Product(getString(R.string.sphygmomanometer), ConstEquipId.BLOODPRESSID, null, R.drawable.bloody_entry, "com.ehealthplatform.intent.action.sphygmomanometer");
 		productList.add(sphygmomanometer);
 	}
 	
 	public static EHTApplication getInstance() {
-		// TODO Auto-generated method stub
 		return instance;
 	}
 	

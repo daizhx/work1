@@ -9,17 +9,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +30,7 @@ import java.util.List;
  * a feature activity that can scan bt and connect a specify device automatically.
  * Created by Administrator on 2014/11/27.
  */
-public class BTBaseActivity extends ActionBarActivity{
+public class BTActionBarActivity extends ActionBarActivity{
 
     private static final String TAG = "BTBaseActivity";
     //devices found
@@ -56,11 +53,11 @@ public class BTBaseActivity extends ActionBarActivity{
             switch (code){
                 case CONNECT_SUCCESS:
                     btIndicatorOn();
-                    Toast.makeText(BTBaseActivity.this, getString(R.string.bt_connect_success),Toast.LENGTH_SHORT);
+                    Toast.makeText(BTActionBarActivity.this, getString(R.string.bt_connect_success),Toast.LENGTH_SHORT);
                     break;
                 case CONNECT_FAIL:
                     btIndicatorOff();
-                    Toast.makeText(BTBaseActivity.this, getString(R.string.bt_connect_fail),Toast.LENGTH_SHORT);
+                    Toast.makeText(BTActionBarActivity.this, getString(R.string.bt_connect_fail),Toast.LENGTH_SHORT);
                     break;
                 default:
                     break;
@@ -90,13 +87,13 @@ public class BTBaseActivity extends ActionBarActivity{
                 switch (device.getBondState()) {
                     case BluetoothDevice.BOND_BONDING:
                         Toast.makeText(
-                                BTBaseActivity.this,
+                                BTActionBarActivity.this,
                                 getString(R.string.pairing),
                                 Toast.LENGTH_SHORT).show();
                         break;
                     case BluetoothDevice.BOND_BONDED:
                         Toast.makeText(
-                                BTBaseActivity.this,
+                                BTActionBarActivity.this,
                                 getString(R.string.paired),
                                 Toast.LENGTH_SHORT).show();
                         String name = device.getName();
@@ -106,7 +103,7 @@ public class BTBaseActivity extends ActionBarActivity{
                         break;
                     case BluetoothDevice.BOND_NONE:
                         Toast.makeText(
-                                BTBaseActivity.this,
+                                BTActionBarActivity.this,
                                 getString(R.string.cancelpair),
                                 Toast.LENGTH_SHORT).show();
                     default:
@@ -127,7 +124,7 @@ public class BTBaseActivity extends ActionBarActivity{
 
                 if(mBTDevices.isEmpty()){
                     btIndicatorOff();
-                    Toast.makeText(BTBaseActivity.this, getString(R.string.no_device_found), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BTActionBarActivity.this, getString(R.string.no_device_found), Toast.LENGTH_SHORT).show();
                 }else{
                     for(BluetoothDevice device : mBTDevices){
                         String name = device.getName();
@@ -137,7 +134,7 @@ public class BTBaseActivity extends ActionBarActivity{
                     }
                     if(mTargetDevices.isEmpty()){
                         btIndicatorOff();
-                        Toast.makeText(BTBaseActivity.this,getString(R.string.not_found_device),Toast.LENGTH_LONG).show();
+                        Toast.makeText(BTActionBarActivity.this,getString(R.string.not_found_device),Toast.LENGTH_LONG).show();
                     }else if(mTargetDevices.size() == 1){
                         //found one device,connect it
                         BluetoothDevice device = mTargetDevices.get(0);
@@ -146,7 +143,7 @@ public class BTBaseActivity extends ActionBarActivity{
                                 Method createBondMethod = BluetoothDevice.class
                                         .getMethod("createBond");
                                 Toast.makeText(
-                                        BTBaseActivity.this,
+                                        BTActionBarActivity.this,
                                         getString(R.string.startpair),
                                         Toast.LENGTH_SHORT).show();
                                 createBondMethod.invoke(device);
@@ -313,10 +310,9 @@ public class BTBaseActivity extends ActionBarActivity{
     }
 
     private void manualConnect() {
-        //TODO
-        AlertDialog alertDialog = new AlertDialog.Builder(BTBaseActivity.this).create();
+        AlertDialog alertDialog = new AlertDialog.Builder(BTActionBarActivity.this).create();
         alertDialog.setTitle(getString(R.string.select_device));
-        ListView listView = new ListView(BTBaseActivity.this);
+        ListView listView = new ListView(BTActionBarActivity.this);
         alertDialog.setView(listView);
         listView.setAdapter(new BaseAdapter() {
             @Override
@@ -355,7 +351,7 @@ public class BTBaseActivity extends ActionBarActivity{
                         Method createBondMethod = BluetoothDevice.class
                                 .getMethod("createBond");
                         Toast.makeText(
-                                BTBaseActivity.this,
+                                BTActionBarActivity.this,
                                 getString(R.string.startpair),
                                 Toast.LENGTH_SHORT).show();
                         createBondMethod.invoke(device);

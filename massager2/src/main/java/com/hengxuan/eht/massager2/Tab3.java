@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +21,8 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.hengxuan.eht.bluetooth.BTBaseActivity;
+import com.hengxuan.eht.bluetooth.BTActionBarActivity;
 import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
-
-import org.w3c.dom.Text;
 
 
 /**
@@ -37,7 +34,7 @@ import org.w3c.dom.Text;
  * create an instance of this fragment.
  *
  */
-public class Tab3 extends Fragment implements BTBaseActivity.ConnectResultListener{
+public class Tab3 extends Fragment implements BTActionBarActivity.ConnectResultListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -317,7 +314,7 @@ public class Tab3 extends Fragment implements BTBaseActivity.ConnectResultListen
     private void sendCommandFail() {
         //TODO
         maskLayer.setVisibility(View.VISIBLE);
-        ((BTBaseActivity)getActivity()).btIndicatorOff();
+        ((BTActionBarActivity)getActivity()).btIndicatorOff();
     }
 
     public void waitForConnect(){
@@ -344,7 +341,7 @@ public class Tab3 extends Fragment implements BTBaseActivity.ConnectResultListen
 
     @Override
     public void onConnectResult(int i) {
-        if(i == BTBaseActivity.CONNECT_SUCCESS){
+        if(i == BTActionBarActivity.CONNECT_SUCCESS){
             maskLayer.setVisibility(View.GONE);
         }else{
             maskLayer.findViewById(R.id.progress).setVisibility(View.GONE);

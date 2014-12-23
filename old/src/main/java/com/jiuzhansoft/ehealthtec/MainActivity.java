@@ -21,6 +21,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.jiuzhansoft.ehealthtec.activity.ReportActivity;
 import com.jiuzhansoft.ehealthtec.application.EHTApplication;
+import com.jiuzhansoft.ehealthtec.application.GlobalVariable;
 import com.jiuzhansoft.ehealthtec.constant.PreferenceKeys;
 import com.jiuzhansoft.ehealthtec.log.Log;
 import com.jiuzhansoft.ehealthtec.product.Product;
@@ -62,7 +63,6 @@ import android.widget.TextView;
 public class MainActivity extends SlidingActivity{
 	private static final String TAG = "MainActivity";
 	private int mDisplayWidth = 0;
-	private int mDisplayHeight = 0;
 	private ViewPager mViewPager;
 	private TopPagerViewAdapter mPagerAdapter;
 	private ImageView ind1, ind2, ind3;
@@ -108,11 +108,21 @@ public class MainActivity extends SlidingActivity{
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-	}
+        //get version name and show
+        try {
+            if(GlobalVariable.versionName == null) {
+                String versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+                ((TextView) findViewById(R.id.tv_version)).setText(versionName);
+            }else {
+                ((TextView) findViewById(R.id.tv_version)).setText(GlobalVariable.versionName);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 

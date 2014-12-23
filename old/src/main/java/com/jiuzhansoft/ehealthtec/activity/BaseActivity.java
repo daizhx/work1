@@ -47,14 +47,6 @@ import org.w3c.dom.Text;
  * @author Administrator
  *
  */
-/**
- * @author Administrator
- *
- */
-/**
- * @author Administrator
- * 
- */
 public class BaseActivity extends FragmentActivity {
 	public TextView mTitle;
 	public ImageView leftIcon;

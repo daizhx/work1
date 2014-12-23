@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,13 +22,10 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.hengxuan.eht.bluetooth.BTBaseActivity;
+import com.hengxuan.eht.bluetooth.BTActionBarActivity;
 import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
 import com.hengxuan.eht.massager2.logger.Log;
 import com.viewpagerindicator.TabPageIndicator;
@@ -46,7 +42,7 @@ import java.text.SimpleDateFormat;
  * create an instance of this fragment.
  *
  */
-public class Tab2 extends Fragment implements BTBaseActivity.ConnectResultListener{
+public class Tab2 extends Fragment implements BTActionBarActivity.ConnectResultListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
