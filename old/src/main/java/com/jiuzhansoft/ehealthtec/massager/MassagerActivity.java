@@ -79,18 +79,5 @@ public class MassagerActivity extends BaseExtBTActivity implements FragmentChang
         transaction.commit();
     }
 
-    @Override
-    public void on() {
-        rightIcon.setImageResource(R.drawable.bt_on);
-    }
 
-    @Override
-    public void off() {
-        rightIcon.setImageResource(R.drawable.bt_off);
-    }
-
-    @Override
-    public void twinkle() {
-        rightIcon.setImageResource(R.drawable.bt_connectting_indicate);
-    }
 }

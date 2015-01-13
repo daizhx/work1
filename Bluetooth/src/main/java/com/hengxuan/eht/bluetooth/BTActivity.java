@@ -13,6 +13,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -33,8 +34,6 @@ import java.util.List;
 public class BTActivity extends Activity {
 
     private static final String TAG = "BTBaseActivity";
-    //devices found
-    private List<BluetoothDevice> mBTDevices = new ArrayList<BluetoothDevice>();
     //devices which connect to
     private List<BluetoothDevice> mTargetDevices = new ArrayList<BluetoothDevice>();
     private BluetoothAdapter mBluetoothAdapter;
@@ -79,7 +78,10 @@ public class BTActivity extends Activity {
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                mBTDevices.add(device);
+                String name = device.getName();
+                if(name != null && (name.equals(TARGET_DEVICE_NAME1) || name.equals(TARGET_DEVICE_NAME2))){
+                    mTargetDevices.add(device);
+                }
             } else if (BluetoothDevice.ACTION_BOND_STATE_CHANGED
                     .equals(action)) {
                 BluetoothDevice device = intent
@@ -122,34 +124,25 @@ public class BTActivity extends Activity {
 
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
 
-                if(mBTDevices.isEmpty()){
+                if(mTargetDevices.isEmpty()){
                     btIndicatorOff();
                     Toast.makeText(BTActivity.this, getString(R.string.no_device_found), Toast.LENGTH_SHORT).show();
                 }else{
-                    for(BluetoothDevice device : mBTDevices){
-                        String name = device.getName();
-                        if(name != null && (name.equals(TARGET_DEVICE_NAME1) || name.equals(TARGET_DEVICE_NAME2))){
-                            mTargetDevices.add(device);
-                        }
-                    }
-                    if(mTargetDevices.isEmpty()){
-                        btIndicatorOff();
-                        Toast.makeText(BTActivity.this,getString(R.string.not_found_device),Toast.LENGTH_LONG).show();
-                    }else if(mTargetDevices.size() == 1){
-                        //found one device,connect it
+                    if(mTargetDevices.size() == 1){
                         BluetoothDevice device = mTargetDevices.get(0);
+                        //if not bond
                         if(device.getBondState() != BluetoothDevice.BOND_BONDED){
                             try {
                                 Method createBondMethod = BluetoothDevice.class
                                         .getMethod("createBond");
+                                createBondMethod.invoke(device);
                                 Toast.makeText(
                                         BTActivity.this,
                                         getString(R.string.startpair),
                                         Toast.LENGTH_SHORT).show();
-                                createBondMethod.invoke(device);
-
                             } catch (Exception e) {
-                                e.printStackTrace();
+//                                e.printStackTrace();
+                                Log.e(TAG,Log.getStackTraceString(e));
                             }
                             return;
                         }else{
@@ -214,6 +207,9 @@ public class BTActivity extends Activity {
             mBluetoothAdapter.enable();
             return;
         }
+        if(BluetoothServiceProxy.isconnect()){
+            return;
+        }
         if(!mBluetoothAdapter.isDiscovering()) {
             btIndicatorTwinkle();
             mBluetoothAdapter.startDiscovery();
@@ -232,6 +228,9 @@ public class BTActivity extends Activity {
     public void btIndicatorOff(){
         if(mBTIndicator != null) {
             mBTIndicator.off();
+            if(mTargetDevices != null) {
+                mTargetDevices.clear();
+            }
         }
         if(mConnectResultListener != null) {
             mConnectResultListener.onConnectResult(0);
@@ -266,6 +265,7 @@ public class BTActivity extends Activity {
      * @param device
      */
     private void connectBluetooth(BluetoothDevice device){
+        Exception exception;
         if(mBluetoothAdapter.isDiscovering()){
             mBluetoothAdapter.cancelDiscovery();
         }
@@ -275,7 +275,8 @@ public class BTActivity extends Activity {
                     try {
                         BluetoothServiceProxy.outStream.flush();
                     } catch (IOException e) {
-                        e.printStackTrace();
+//                        e.printStackTrace();
+                        Log.e(TAG,Log.getStackTraceString(e));
                     }
                 }
                 try {
@@ -284,7 +285,8 @@ public class BTActivity extends Activity {
                     BluetoothServiceProxy.mac = null;
                     BluetoothServiceProxy.name = null;
                 } catch (IOException e2) {
-                    e2.printStackTrace();
+//                    e2.printStackTrace();
+                    Log.e(TAG,Log.getStackTraceString(e2));
                 }
             }
 
@@ -295,18 +297,18 @@ public class BTActivity extends Activity {
             connectThread.start();
             return;
         } catch (SecurityException e) {
-            e.printStackTrace();
+            exception = e;
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            exception = e;
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            exception = e;
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            exception = e;
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            exception = e;
         }
-//        manualConnect();
         //TODO create socket fail.
+        Log.e(TAG, Log.getStackTraceString(exception));
     }
 
     private void manualConnect() {
@@ -348,16 +350,12 @@ public class BTActivity extends Activity {
                     connectBluetooth(device);
                 }else{
                     try {
-                        Method createBondMethod = BluetoothDevice.class
-                                .getMethod("createBond");
-                        Toast.makeText(
-                                BTActivity.this,
-                                getString(R.string.startpair),
-                                Toast.LENGTH_SHORT).show();
+                        Method createBondMethod = BluetoothDevice.class.getMethod("createBond");
+                        Toast.makeText(BTActivity.this,getString(R.string.startpair),Toast.LENGTH_SHORT).show();
                         createBondMethod.invoke(device);
-
                     } catch (Exception e) {
-                        e.printStackTrace();
+//                e.printStackTrace();
+                        Log.e(TAG,Log.getStackTraceString(e));
                     }
                 }
             }
@@ -371,15 +369,15 @@ public class BTActivity extends Activity {
     }
 
     public boolean setPin(Class<? extends BluetoothDevice> btClass, BluetoothDevice btDevice, String str)
-            throws Exception {
+        throws Exception {
 
         try {
 
-            Method removeBondMethod = btClass.getDeclaredMethod("setPin",
+        Method removeBondMethod = btClass.getDeclaredMethod("setPin",
 
-                    new Class[] { byte[].class });
+        new Class[] { byte[].class });
 
-            Boolean returnValue = (Boolean) removeBondMethod.invoke(btDevice,
+        Boolean returnValue = (Boolean) removeBondMethod.invoke(btDevice,
 
                     new Object[] { str.getBytes() });
 
@@ -403,10 +401,10 @@ public class BTActivity extends Activity {
     }
 
     private class ConnectThread extends Thread{
-        BluetoothDevice currentdevice;
+        BluetoothDevice mDevice;
         BluetoothSocket btSocket;
         public ConnectThread(BluetoothDevice device,BluetoothSocket s) {
-            currentdevice = device;
+            mDevice = device;
             btSocket = s;
         }
         @Override
@@ -416,23 +414,24 @@ public class BTActivity extends Activity {
                     mBluetoothAdapter.cancelDiscovery();
                 }
                 btSocket.connect();
-                BluetoothServiceProxy.name = currentdevice.getName();
-                BluetoothServiceProxy.mac = currentdevice.getAddress();
+                BluetoothServiceProxy.name = mDevice.getName();
+                BluetoothServiceProxy.mac = mDevice.getAddress();
                 //set the rightIcon image
                 Message msg = Message.obtain();
-                msg.what = 1;
+                msg.what = CONNECT_SUCCESS;
                 connectHandler.sendMessage(msg);
             } catch (IOException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
+                Log.e(TAG,Log.getStackTraceString(e));
                 try {
                     BluetoothServiceProxy.btSocket.close();
                     BluetoothServiceProxy.btSocket = null;
-
                 } catch (IOException e2) {
-                    e2.printStackTrace();
+//                    e2.printStackTrace();
+                    Log.e(TAG,Log.getStackTraceString(e2));
                 }
                 Message msg = Message.obtain();
-                msg.what = 0;
+                msg.what = CONNECT_FAIL;
                 connectHandler.sendMessage(msg);
             }
         }

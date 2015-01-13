@@ -7,10 +7,12 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 
 import com.hengxuan.eht.bluetooth.BTIndicator;
+import com.hengxuan.eht.bluetooth.BluetoothServiceProxy;
 import com.jiuzhansoft.ehealthtec.MainActivity;
 import com.jiuzhansoft.ehealthtec.R;
 import com.jiuzhansoft.ehealthtec.constant.PreferenceKeys;
 import com.jiuzhansoft.ehealthtec.log.Log;
+import com.jiuzhansoft.ehealthtec.sphygmomanometer.service.BluetoothService;
 
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
@@ -136,6 +138,9 @@ public class BaseExtBTActivity extends BTActivity implements BTIndicator{
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
+        if(BluetoothServiceProxy.isconnect()){
+            btIndicatorOn();
+        }
         mDisplayWidth = getWindowManager().getDefaultDisplay().getWidth();
         mDisplayHeight = getWindowManager().getDefaultDisplay().getHeight();
 

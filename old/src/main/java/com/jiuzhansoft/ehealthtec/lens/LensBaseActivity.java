@@ -123,6 +123,10 @@ public class LensBaseActivity extends BaseActivity implements
 	public boolean isConnectLens() {
 		WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
 		String ssid = wifiInfo.getSSID();
+        //fix---2015.01.13,no network currently connected
+        if(ssid == null){
+            return false;
+        }
 		ssid = ssid.replaceAll("\"", "");
 		if (ssid.length() < 3) {
 			// prevent throwing a IndexOutBoundException
