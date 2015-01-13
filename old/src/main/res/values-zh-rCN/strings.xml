@@ -426,4 +426,7 @@
     <string name="please_enter_your_weight">请输入你的体重</string>
     <string name="improve_personal_information">个人信息</string>
     <string name="input_phone_number_hint">请输入手机号码</string>
+
+    <string name="can_not_connect_device">不能连接设备</string>
+    <string name="no_song">没有歌曲</string>
 </resources>

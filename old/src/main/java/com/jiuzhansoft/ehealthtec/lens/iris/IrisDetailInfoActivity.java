@@ -173,7 +173,13 @@ public class IrisDetailInfoActivity extends BaseActivity {
 		WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 		WifiInfo info = wifiManager.getConnectionInfo();
 		String getssid = info.getSSID();
-		getssid = getssid.replaceAll("\"", "");
+        //added start -- fix bug,2015.01.13
+        if(getssid == null){
+            getssid = "";
+        }else {
+        //added end
+            getssid = getssid.replaceAll("\"", "");
+        }
 		if(!TextUtils.isEmpty(getssid)&&getssid.substring(0, 3).equals("EHT")){
 			mProgressDialog = new ProgressDialog(this);
 			mProgressDialog.setMessage(getText(R.string.disconnect_lens));
